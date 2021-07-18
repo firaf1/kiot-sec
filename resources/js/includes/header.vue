@@ -27,7 +27,7 @@
                     <li class="nav-item align-self-center page-heading">
                         <div class="page-header">
                             <div class="page-title">
-                                <h3>Analytics</h3>
+                                <h3>Dashboard</h3>
                             </div>
                         </div>
                     </li>

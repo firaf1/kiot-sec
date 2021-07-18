@@ -9,19 +9,21 @@
       	<!--Bootstrap css -->
           <!-- <script src="{{ mix('css/app.css') }}" defer></script> -->
 		<link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/table/datatable/dt-global_style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/table/datatable/custom_dt_custom.css') }}">
         <link href="{{ asset('assets/assets/css/loader.css" rel="stylesheet') }}" type="text/css" />
-    <script src="{{ asset('assets/assets/js/loader.js') }}"></script>
-
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/forms/theme-checkbox-radio.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/select2/select2.min.css') }}">
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
     <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/assets/css/plugins.css') }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/bootstrap-select/bootstrap-select.min.css') }}">
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link href="{{ asset('assets/plugins/apex/apexcharts.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/assets/css/dashboard/dash_1.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/file-upload/file-upload-with-preview.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
         <!-- Scripts -->
@@ -63,13 +65,17 @@
             App.init();
         });
     </script>
+    
+    
+
     <script src="{{ asset('assets/assets/js/custom.js') }}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     <script src="{{ asset('assets/plugins/apex/apexcharts.min.js') }}"></script>
     <script src="{{ asset('assets/assets/js/dashboard/dash_1.js') }}"></script>
+    <script src="{{ asset('assets/plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-
+    <script src="{{ asset('assets/plugins/file-upload/file-upload-with-preview.min.js') }}"></script>
     </body>
 </html>
