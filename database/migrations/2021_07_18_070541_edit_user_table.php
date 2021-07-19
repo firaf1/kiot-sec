@@ -14,14 +14,15 @@ class EditUserTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-           $table->string('campos');
+           $table->string('campos')->nullable();
            $table->string('department')->nullable();
            $table->string('batch')->nullable();
-           $table->string('phoneNumber');
-           $table->string('scanned_kebele_id');
-           $table->string('qr');
-           $table->string('role');
-           $table->string('status');
+           $table->text('phoneNumber')->nullable();
+           $table->text('scanned_kebele_id')->nullable();
+           $table->text('qr')->nullable();
+           
+           $table->string('role')->nullable();
+           $table->string('status')->nullable();
            
 
         });

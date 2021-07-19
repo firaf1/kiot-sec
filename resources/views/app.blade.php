@@ -77,5 +77,10 @@
     <script src="{{ asset('assets/plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     <script src="{{ asset('assets/plugins/file-upload/file-upload-with-preview.min.js') }}"></script>
+
+    <script>
+
+        
+    </script>
     </body>
 </html>

@@ -408,9 +408,10 @@
             <div class="form-group">
               <div class="row">
                 <div class="col-md-6">
-                  <div class="btn-group bootstrap-select">
+                 <h6 class=" ">Select Shift</h6>
+                  <div class=" bootstrap-select">
                       
-                    <select class="selectpicker" tabindex="-98">
+                    <select class="selectpicker " tabindex="-98">
                       <option title="Morning">
                         Morning
                       </option>
@@ -422,12 +423,14 @@
                
               <div class="col-md-6">
 
-                <h6 class="text-center">Gender</h6>
-                <div class="container" style="margin-left: 5rem">
+                <h6 class=" ">Gender</h6>
+                <div class="container" >
                   <div class="n-chk">
                     <label class="new-control new-radio new-radio-text radio-danger">
                       <input
                         type="radio"
+                         v-model="form.sex"
+                         value="male"
                         class="new-control-input"
                         name="custom-radio-4"
                       />
@@ -439,8 +442,10 @@
                     <label class="new-control new-radio new-radio-text radio-primary">
                       <input
                         type="radio"
+                         v-model="form.sex"
                         class="new-control-input"
                         name="custom-radio-4"
+                        value="female"
                         checked=""
                       />
                       <span class="new-control-indicator"></span
@@ -451,34 +456,59 @@
 
 
               </div>
+               
               </div>
-              <div class="col-md-12">
-                  <input
-                    id="t-text"
-                    type="text"
-                    v-model="form.password"
-                    name="password"
-                    placeholder="Staff "
-                    class="form-control"
-                    required=""
-                  />
-                </div>
- <div class="row">
- <div class="col-md-6" >
+             <hr>
+ <div class="row d-flex justify-content-center" >
+ <div class="col-md-5" >
  <div class="custom-file-container" data-upload-id="myFirstImage">
-                                        <label>Upload (Single File) <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                                        <label>Kebele Id  <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
                                         <label class="custom-file-container__custom-file">
-                                            <input type="file" class="custom-file-container__custom-file__custom-file-input" accept="image/*">
+                                            <input type="file" accept="image/*"
+                                             enctype="multipart/form-data" 
+                                            
+                                                 @input="form.scannedKebeleId = $event.target.files[0]"
+                                             class="custom-file-container__custom-file__custom-file-input"
+                                             @change="previewKebele"
+                                               >
                                             <input type="hidden" name="MAX_FILE_SIZE" value="10485760">
-                                            <span class="custom-file-container__custom-file__custom-file-control">Choose file...<span class="custom-file-container__custom-file__custom-file-control__button"> Browse </span></span>
+                                            <span class="custom-file-container__custom-file__custom-file-control">Choose file...
+                                            <span class="custom-file-container__custom-file__custom-file-control__button"> Browse </span></span>
                                         </label>
-                                         <div class="" style="height:10rem; border:2px solid red; " >
-                                         
+                                         <div class="mt-5" style="height:15rem; border:2px solid #7d93f9; 
+                                         border-radius: 10px;
+                                          overflow:hidden;  " >
+                                         <img v-if(preview2) :src="preview2"  style="width:100%; height:100%; " class="img-fluid" />
+ <img v-if(!preview2) src="assets/assets/img/imagepreview.png"
+                                         style="width:100%; height:100%; "
+                                          alt="" srcset="">
                                          
                                          </div>
                                     </div>
  </div>
- 
+  <div class="col-md-5" >
+ <div class="custom-file-container" data-upload-id="myFirstImage">
+                                        <label>Profile Picture <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                                        <label class="custom-file-container__custom-file">
+                                        
+                                            <input  type="file" enctype="multipart/form-data"     @change="previewImage"
+                                             @input="form.profile = $event.target.files[0]"
+                                             class="custom-file-container__custom-file__custom-file-input" 
+                                             accept="image/*">
+                                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760">
+                                            <span class="custom-file-container__custom-file__custom-file-control">Choose file...<span class="custom-file-container__custom-file__custom-file-control__button"> Browse </span></span>
+                                        </label>
+                                         <div class="mt-5" style="height:15rem; border:2px solid #7d93f9; 
+                                         border-radius: 10px;
+                                          overflow:hidden;  " >
+ <img v-if(preview) :src="preview"  style="width:100%; height:100%; " class="img-fluid" />
+ <img v-if(!preview) src="assets/assets/img/imagepreview.png"
+                                         style="width:100%; height:100%; "
+                                          alt="" srcset="">
+                                         
+                                         </div>
+                                    </div>
+ </div>
  </div>
             </div>
            
@@ -486,7 +516,7 @@
           <button class="btn" data-dismiss="modal">
             <i class="flaticon-cancel-12"></i> Discard
           </button>
-          <button type="button" class="btn btn-primary">Save</button>
+          <button type="button" @click="submit" class="btn btn-primary">Save</button>
         </div>
       </div>
       </div>
@@ -516,21 +546,58 @@ export default {
   },
   data() {
     return {
+       preview: null,
+         preview2: null,
       form: this.$inertia.form({
         fullname: "",
         email: "",
-        profile: "",
+        profile: null,
         PhoneNumber: "",
         role: "",
         scannedKebeleId: "",
         qr: "",
-        password: "",
+        password: "123",
         shift: "",
       }),
+      
     };
+  },
+  methods:{
+
+    
+
+    previewImage: function(event) {
+      var input = event.target;
+      if (input.files) {
+        var reader = new FileReader();
+        reader.onload = (e) => {
+          this.preview = e.target.result;
+        }
+        this.image=input.files[0];
+        
+        reader.readAsDataURL(input.files[0]);
+      }
+    },
+     previewKebele: function(event) {
+      var input = event.target;
+      if (input.files) {
+        var reader = new FileReader();
+        reader.onload = (e) => {
+          this.preview2 = e.target.result;
+        }
+        this.image=input.files[0];
+        reader.readAsDataURL(input.files[0]);
+      }
+    },
+
+      submit() {
+       this.form.post(this.route('user.store'))
+    },
   },
   mounted() {
     document.addEventListener("scroll", this.test);
   },
 };
+
+ 
 </script>
