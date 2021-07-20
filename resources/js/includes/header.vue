@@ -633,7 +633,7 @@
                                 </a>
                             </div>
                             <div class="dropdown-item">
-                                <a href="auth_login.html">
+                                <inertia-link  :href="route('logout')" method="delete">
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="24"
@@ -659,8 +659,10 @@
                                             y2="12"
                                         ></line>
                                     </svg>
-                                    <span>Log Out</span>
-                                </a>
+                                    <span>
+                                   Logout 
+                                    </span>
+                                </inertia-link>
                             </div>
                         </div>
                     </li>

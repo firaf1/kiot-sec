@@ -1138,6 +1138,18 @@ select {
 	margin-left: auto;
 	margin-right: auto;
 }
+.my-2 {
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
+}
+.mx-2 {
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+}
+.mx-4 {
+	margin-left: 1rem;
+	margin-right: 1rem;
+}
 .ml-3 {
 	margin-left: 0.75rem;
 }
@@ -1218,6 +1230,9 @@ select {
 }
 .mb-2 {
 	margin-bottom: 0.5rem;
+}
+.mr-4 {
+	margin-right: 1rem;
 }
 .block {
 	display: block;
@@ -1575,6 +1590,9 @@ select {
 }
 .p-1 {
 	padding: 0.25rem;
+}
+.p-3 {
+	padding: 0.75rem;
 }
 .px-4 {
 	padding-left: 1rem;

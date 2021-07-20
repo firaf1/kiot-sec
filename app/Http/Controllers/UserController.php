@@ -215,13 +215,45 @@ if($insert1){
          return redirect(route('librarist'));
 
     }
+    public function frontRegister(Request $request){
 
+        $request->validate([
+            // 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'name' => 'required|max:30',
+           
+            'email' => 'required|unique:users',
+            'password' => 'required|confirmed',
+            'id_num' => 'required',
+            'dept_id' => 'required|unique:users',
+            "PhoneNumber" => "required|min:9",
+            
+            
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:6'
+        ]);
+      
+ 
+        $user = new User();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->campos = "KIOT";
+        $user->phoneNumber = $request->PhoneNumber;
+        $user->role = 'student';
+        $user->status = 'pending';
+        $user->user_id = $request->id_num;
+        $user->department = $request->dept_id;
+        $user->save();
+     
+
+    }
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         //

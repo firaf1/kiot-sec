@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\auth\AuthConroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,8 +22,13 @@ Route::post('/store-user', [UserController::class, 'store'])
 ->middleware('auth');
 Route::post('/user-update/{id}', [UserController::class, 'update'])->name('user.update');
 Route::post('user-delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
+Route::post('front-register', [UserController::class, 'frontRegister'])->name('front.register');
+ 
+Route::delete('logout', [AuthConroller::class, 'destroy'])
+->name('logout');
 
 
+ 
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
