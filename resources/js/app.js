@@ -1,5 +1,5 @@
 require('./bootstrap');
-
+import Vue from 'vue'
 // Import modules...
 import { createApp, h } from 'vue';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
@@ -17,5 +17,5 @@ createApp({
     .mixin({ methods: { route } })
     .use(InertiaPlugin)
     .mount(el);
-
+   
 InertiaProgress.init({ color: '#ffc107' });

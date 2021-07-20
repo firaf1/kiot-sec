@@ -22,7 +22,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        return Inertia::render('page/librariest');
+        $data = User::where('role', 'staff')->get();
+//    dd($data);
+        return Inertia::render('page/librariest', ['staffs'=> $data]);
     }
 
     /**
@@ -43,30 +45,35 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        // dd('is here');
 
-        // $request->validate([
-        //     'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-        //     'name' => 'required|max:30',
-        //     'id_number' => 'required|max:30',
-        //     'email' => 'required',
-        //     'password' => 'required|confirmed',
-        //     "shift_id" => "required",
-        //     "account_type" => "required"
-        // ]);
+        $request->validate([
+            // 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'name' => 'required|max:30',
+           
+            'email' => 'required|unique:users',
+            'password' => 'required|confirmed',
+            "shift_id" => "required",
+            "PhoneNumber" => "required|min:9",
+            "scannedKebeleId" => "required|image",
+            "profile" => "required|image",
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:6'
+        ]);
       
  
         $user = new User();
-        $user->name = $request->fullname;
+        $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
+        $user->password = Hash::make($request->password);
         $user->campos = "KIOT";
         $user->phoneNumber = $request->PhoneNumber;
-        $user->role = "Staff";
+        $user->role = 'staff';
         
         $picture1 = 'kebeleid'.time() . '.' . $request->scannedKebeleId->extension();
         $insert1 =  $request->scannedKebeleId->move(public_path('kebeleId'), $picture1);
 if($insert1){
-    $user->scanned_kebele_id = 'kebeleId'.$picture1;
+    $user->scanned_kebele_id = 'kebeleId/'.$picture1;
 }
 
 
@@ -84,7 +91,7 @@ if($insert1){
          $card = ImageManagerStatic::make('assets/card/card.jpg')->resize(2000, 3000);
          $pic = ImageManagerStatic::make('ProfileImage/'.$picture)->resize(880, 880);
          $card->insert($pic, '', 570, 490);
-         $hashedName = Hash::make($request->fullname);
+         $hashedName = Hash::make($request->name);
 
          $last = User::latest()->first();
          $last_id = $last->user_id;
@@ -97,15 +104,15 @@ if($insert1){
              $now_id = "WOUR/00" . ($last_id + 1);
 }
 
-         $dns = new DNS1D;
+         $dns = new DNS2D;
          $last_id = $last_id + 1;
          $hashed =Hash::make($last_id);
-         $barcode = Image::make($dns->getBarcodePNG($hashed, 'C39+'))->resize(1200, 300);
-         $card->insert($barcode, '', 400, 2300);
+         $barcode = Image::make($dns->getBarcodePNG($hashed, 'QRCODE'))->resize(500, 500);
+         $card->insert($barcode, '', 800, 2300);
 
 
 
-         $card->text($request->fullname, 500, 1500, function ($font) {
+         $card->text($request->name, 500, 1500, function ($font) {
             $font->file(public_path('css/id.ttf'));
             $font->size(150);
             $font->color('#00235d');
@@ -139,12 +146,11 @@ if($insert1){
             $font->angle(0);
         });
 
-        $user->password = $request->password;
+     
          $card->save('cards/'. $request->fullname.time().$card . '.png');
-
-        //  $picture1 = 'kebeleid'.time() . '.' . $request->scannedKebeleId->extension();
-        //  $temp =  'cards/'.$card . '.png';
-         dd($card);
+ 
+        //  dd($card->basename);
+        $user->qr = 'cards/'.$card->basename;
          $user->user_id = $last_id;
       
          $user->save();
@@ -190,7 +196,10 @@ if($insert1){
      */
     public function update(Request $request, $id)
     {
-        //
+        dd($id);
+        if($request->has('id')){
+            dd($id);
+        }
     }
 
     /**

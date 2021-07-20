@@ -20,9 +20,10 @@ class EditUserTable extends Migration
            $table->text('phoneNumber')->nullable();
            $table->text('scanned_kebele_id')->nullable();
            $table->text('qr')->nullable();
-           
+           $table->string('shift_id')->nullable();
            $table->string('role')->nullable();
            $table->string('status')->nullable();
+           
            
 
         });

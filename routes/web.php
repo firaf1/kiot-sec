@@ -19,6 +19,10 @@ use App\Http\Controllers\UserController;
 Route::post('/store-user', [UserController::class, 'store'])
 ->name('user.store')
 ->middleware('auth');
+Route::post('/user-update/{id}', [UserController::class, 'update'])->name('user.update');
+
+
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
