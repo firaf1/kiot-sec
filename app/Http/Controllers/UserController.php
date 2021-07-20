@@ -22,6 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
+    
         $data = User::where('role', 'staff')->get();
 //    dd($data);
         return Inertia::render('page/librariest', ['staffs'=> $data]);
@@ -45,7 +46,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // dd('is here');
+        // dd('is here')
+     
 
         $request->validate([
             // 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
@@ -69,6 +71,7 @@ class UserController extends Controller
         $user->campos = "KIOT";
         $user->phoneNumber = $request->PhoneNumber;
         $user->role = 'staff';
+        $user->status = 'Approved';
         
         $picture1 = 'kebeleid'.time() . '.' . $request->scannedKebeleId->extension();
         $insert1 =  $request->scannedKebeleId->move(public_path('kebeleId'), $picture1);
@@ -196,10 +199,21 @@ if($insert1){
      */
     public function update(Request $request, $id)
     {
-        dd($id);
-        if($request->has('id')){
-            dd($id);
-        }
+
+       
+        
+         
+         $user = User::findOrFail($id);
+         $user->name = $request->name;
+         $user->email = $request->email;
+          
+         
+         $user->phoneNumber = $request->PhoneNumber;
+         $user->role = 'staff';
+         $user->save();
+         $data = User::where('role', 'Staff')->get();
+         return redirect(route('librarist'));
+
     }
 
     /**
@@ -211,5 +225,9 @@ if($insert1){
     public function destroy($id)
     {
         //
+        // dd($id);
+        $user = User::where('id', $id)->first();
+        $user->delete();
+        return redirect(route('librarist'));
     }
 }

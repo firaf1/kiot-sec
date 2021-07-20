@@ -182,7 +182,7 @@
                           <td> {{ staff.phoneNumber }} </td>
                           <td class="text-center">
                             <span class="shadow-none badge badge-primary"
-                              >Approved</span
+                              >{{ staff.status }}</span
                             >
                           </td>
                           <td class="text-center">
@@ -216,8 +216,10 @@
                                 <a
                                   href="javascript:void(0);"
                                   class="bs-tooltip"
-                                  data-toggle="tooltip"
+                                 data-toggle="modal"
+                            data-target=".delete-modal"
                                   data-placement="top"
+                                   @click="deleteStaff(staff)"
                                   title=""
                                   data-original-title="Delete"
                                   ><svg
@@ -359,6 +361,7 @@
     <div
       class="modal fade bd-example-modal-lg show"
       tabindex="-1"
+      id="RegModal"
       aria-labelledby="myLargeModalLabel"
       aria-modal="true"
       role="dialog"
@@ -396,7 +399,7 @@
               <div class="row">
                 <div class="col-md-6">
                   <input
-                    id="t-text"
+                  
                     v-model="form.name"
                     type="text"
                     name="txt"
@@ -413,7 +416,7 @@
                 </div>
                 <div class="col-md-6">
                   <input
-                    id="t-text"
+ 
                     v-bind:class="{
                       'is-invalid': $page.props.errors.email,
                     }"
@@ -433,7 +436,7 @@
 
 
 
- <div class="form-group">
+          <div class="form-group">
               <div class="row">
                 <div class="col-md-6">
                   <input
@@ -514,6 +517,7 @@
                   </p>
                 </div>
               </div>
+            </div>
               <hr />
               <div class="row d-flex justify-content-center">
                 <div class="col-md-5">
@@ -661,7 +665,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            
 
             <div class="modal-footer">
               <button class="btn" data-dismiss="modal">
@@ -681,7 +685,27 @@
     </div>
 
 
-
+<div class="modal fade delete-modal show" tabindex="-1" aria-labelledby="mySmallModalLabel" aria-modal="true" role="dialog">
+                                        <div class="modal-dialog modal-sm" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="mySmallModalLabel">Are you sure</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p class="modal-text text-danger">
+                                                    this data if once deleted form database we will not able to recover data please make sure before take action
+                                                    </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+                                                    <button type="button" @click="deletedStaff" class="btn btn-danger">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
     <div class="modal fade register-modal show" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-modal="true" >
                                       <div class="modal-dialog"   role="document">
@@ -790,7 +814,7 @@ export default {
       });
     },
     cardModal(data){
-this.cardPreview = data;
+    this.cardPreview = data;
     },
     editStaff(staff){
       this.isUpdate = staff.id,
@@ -813,30 +837,111 @@ this.cardPreview = data;
     AddModalTriger(){
      
       this.isUpdate = false;
+     
+      
       $('.bd-example-modal-lg').modal('show')
     },
       UpdateStaff1(){
         console.log('is ')
+        
              
-              Inertia.post(this.route('user-update/' + this.isUpdate), this.form, {
+              Inertia.post(this.route('user.update',  this.isUpdate), this.form, {
                   onBefore: (visit) => {},
-        onStart: (visit) => {},
+        onStart: (visit) => { 
+
+        },
         onProgress: (progress) => {},
-        onSuccess: (page) => {},
+        onSuccess: (page) => {
+        document.querySelector('.modal-backdrop').style.display="none";
+            const toast = swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    padding: '2em'
+  });
+  toast({
+    type: 'success',
+    title: 'Info Successfully Updated',
+    padding: '2em',
+  })
+          },
         onError: (errors) => {},
         onCancel: () => {},
-        onFinish: (visit) => {},
+        onFinish: (visit) => {
+          
+        },
         preserveState: (page) => Object.keys(page.props.errors).length,
               })
      
   },
+  deleteStaff(staff){
+    this.isUpdate = staff.id
+  },
+  
+  
+
+deletedStaff(){
+   $('.delete-modal').modal('hide')
+   console.log('is deleting')
+    Inertia.post(this.route('user.delete',  this.isUpdate), this.form, {
+   onBefore: (visit) => {},
+        onStart: (visit) => {
+
+           $.blockUI({
+        message: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-loader spin ml-2"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>',
+        fadeIn: 800, 
+        timeout: 40000, //unblock after 2 seconds
+        overlayCSS: {
+            backgroundColor: '#1b2024',
+            opacity: 0.8,
+            zIndex: 1200,
+            cursor: 'wait'
+        },
+        css: {
+            border: 0,
+            color: '#fff',
+            zIndex: 1201,
+            padding: 0,
+            backgroundColor: 'transparent'
+        },
+    })
+        },
+        onProgress: (progress) => {     },
+        onSuccess: (page) => {
+      const toast = swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    padding: '2em'
+  });
+  toast({
+    type: 'success',
+    title: 'Info Successfully Updated',
+    padding: '2em',
+  })
+
+        },
+        onError: (errors) => {
+          
+          
+        },
+        onCancel: () => {},
+        onFinish: (visit) => {
+          console.log('is finished')
+           
+document.querySelector('.blockOverlay').style.display="none";
+document.querySelector('.blockMsg').style.display="none";
+
+        },
+        preserveState: (page) => Object.keys(page.props.errors).length,
+    })
+      
   },
 
-  
-  mounted() {
-    document.addEventListener("scroll", this.test);
-  },
-};
+  }
+}
 
 
 </script>

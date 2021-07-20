@@ -20,7 +20,7 @@ Route::post('/store-user', [UserController::class, 'store'])
 ->name('user.store')
 ->middleware('auth');
 Route::post('/user-update/{id}', [UserController::class, 'update'])->name('user.update');
-
+Route::post('user-delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
 
 
 
