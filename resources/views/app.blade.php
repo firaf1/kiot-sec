@@ -36,6 +36,8 @@
     <link href="{{ asset('assets/assets/css/dashboard/dash_1.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/file-upload/file-upload-with-preview.min.css') }}" rel="stylesheet"
         type="text/css" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/dropify/dropify.min.css') }}">
+        <link href="{{ asset('assets/assets/css/users/account-setting.css') }}" rel="stylesheet" type="text/css" />
       
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     
@@ -91,7 +93,8 @@
     });
     </script>
 
-
+<link href="{{ asset('assets/plugins/apex/apexcharts.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/assets/css/dashboard/dash_2.css') }}" rel="stylesheet" type="text/css" />
 
 <script src="{{ asset('assets/assets/js/authentication/form-2.js') }}"></script>
     <script src="{{ asset('assets/assets/js/custom.js') }}"></script>
@@ -106,7 +109,8 @@
     <script src="{{ asset('assets/plugins/blockui/jquery.blockUI.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalerts/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalerts/custom-sweetalert.js') }}"></script>
-
+    <script src="{{ asset('assets/plugins/dropify/dropify.min.js') }}"></script>
+    <script src="{{ asset('assets/assets/js/users/account-settings.js') }}"></script>
     <script>
 
 

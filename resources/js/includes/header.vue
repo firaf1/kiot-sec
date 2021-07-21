@@ -531,7 +531,7 @@
                         "
                     >
                         <a
-                            href="javascript:void(0);"
+                            href="#"
                             class="nav-link dropdown-toggle user"
                             id="userProfileDropdown"
                             data-toggle="dropdown"
@@ -539,6 +539,7 @@
                             aria-expanded="false"
                         >
                             <img src="assets/assets/img/profile-7.jpg" alt="avatar" />
+
                         </a>
                         <div
                             class="dropdown-menu position-absolute"
@@ -558,7 +559,8 @@
                                 </div>
                             </div>
                             <div class="dropdown-item">
-                                <a href="user_profile.html">
+                                <inertia-link   :href="route('profile.info')"
+                                >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="24"
@@ -577,7 +579,7 @@
                                         <circle cx="12" cy="7" r="4"></circle>
                                     </svg>
                                     <span> Profile</span>
-                                </a>
+                                </inertia-link>
                             </div>
                             <div class="dropdown-item">
                                 <a href="apps_mailbox.html">

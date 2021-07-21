@@ -8,38 +8,21 @@
               <div class="table-responsive mb-4">
                 <div
                   id="style-3_wrapper"
-                  class="
-                    dataTables_wrapper
-                    container-fluid
-                    dt-bootstrap4
-                    no-footer
-                  "
+                  class="dataTables_wrapper container-fluid dt-bootstrap4 no-footer"
                 >
                   <div class="dt--top-section">
                     <div class="row">
                       <div
-                        class="
-                          col-12 col-sm-6
-                          d-flex
-                          justify-content-sm-start justify-content-center
-                        "
+                        class="col-12 col-sm-6 d-flex justify-content-sm-start justify-content-center"
                       >
                         <div class="dataTables_length" id="style-3_length">
-                          <button
-                            class="btn btn-primary"
-                          @click="AddModalTriger"
-                          >
+                          <button class="btn btn-primary" @click="AddModalTriger">
                             Add
                           </button>
                         </div>
                       </div>
                       <div
-                        class="
-                          col-12 col-sm-6
-                          d-flex
-                          justify-content-sm-end justify-content-center
-                          mt-sm-0 mt-3
-                        "
+                        class="col-12 col-sm-6 d-flex justify-content-sm-end justify-content-center mt-sm-0 mt-3"
                       >
                         <div id="style-3_filter" class="dataTables_filter">
                           <label
@@ -56,12 +39,7 @@
                               class="feather feather-search"
                             >
                               <circle cx="11" cy="11" r="8"></circle>
-                              <line
-                                x1="21"
-                                y1="21"
-                                x2="16.65"
-                                y2="16.65"
-                              ></line></svg
+                              <line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg
                             ><input
                               type="search"
                               class="form-control"
@@ -76,7 +54,6 @@
                     <table
                       id="style-3"
                       class="table style-3 table-hover dataTable no-footer"
-                      
                     >
                       <thead>
                         <tr role="row">
@@ -88,7 +65,6 @@
                             colspan="1"
                             aria-sort="ascending"
                             aria-label=" Record Id : activate to sort column descending"
-                            
                           >
                             Record Id
                           </th>
@@ -99,7 +75,6 @@
                             rowspan="1"
                             colspan="1"
                             aria-label="Image: activate to sort column ascending"
-                          
                           >
                             Image
                           </th>
@@ -110,11 +85,10 @@
                             rowspan="1"
                             colspan="1"
                             aria-label="First Name: activate to sort column ascending"
-                            
                           >
                             First Name
                           </th>
-                         
+
                           <th
                             class="sorting"
                             tabindex="0"
@@ -122,18 +96,10 @@
                             rowspan="1"
                             colspan="1"
                             aria-label="Email: activate to sort column ascending"
-                             
                           >
-                         card
+                            card
                           </th>
-                          <th
-                            class="sorting"
-                           
-                            
-                            
-                          >
-                            Mobile No.
-                          </th>
+                          <th class="sorting">Mobile No.</th>
                           <th
                             class="text-center sorting"
                             tabindex="0"
@@ -141,7 +107,6 @@
                             rowspan="1"
                             colspan="1"
                             aria-label="Status: activate to sort column ascending"
-                           
                           >
                             Status
                           </th>
@@ -152,7 +117,6 @@
                             rowspan="1"
                             colspan="1"
                             aria-label="Action: activate to sort column ascending"
-                           
                           >
                             Action
                           </th>
@@ -161,39 +125,49 @@
                       <tbody>
                         <tr v-for="staff in staffs" :key="staff.id" role="row">
                           <td class="checkbox-column text-center sorting_1">
-                          {{ staff.user_id  }}
+                            {{ staff.user_id }}
                           </td>
                           <td class="text-center">
-                            <span style="cursor:pointer"  data-toggle="modal" data-target="#registerModal"
+                            <span
+                              style="cursor: pointer"
+                              data-toggle="modal"
+                              data-target="#registerModal"
                               ><img
-                               :src="staff.profile_photo_path"
+                                :src="staff.profile_photo_path"
                                 @click="cardModal(staff.profile_photo_path)"
                                 class="profile-img"
                                 alt="avatar"
                             /></span>
                           </td>
-                          <td>{{ staff.name  }}</td> 
-                          <td><span style="cursor:pointer" data-toggle="modal" data-target="#registerModal" >
-                          <img @click="cardModal(staff.qr)"
-                               :src="staff.qr"
+                          <td>{{ staff.name }}</td>
+                          <td>
+                            <span
+                              style="cursor: pointer"
+                              data-toggle="modal"
+                              data-target="#registerModal"
+                            >
+                              <img
+                                @click="cardModal(staff.qr)"
+                                :src="staff.qr"
                                 class="profile-img"
                                 alt="avatar"
-                            /></span> </td>
-                          <td> {{ staff.phoneNumber }} </td>
+                            /></span>
+                          </td>
+                          <td>{{ staff.phoneNumber }}</td>
                           <td class="text-center">
-                            <span class="shadow-none badge badge-primary"
-                              >{{ staff.status }}</span
-                            >
+                            <span class="shadow-none badge badge-primary">{{
+                              staff.status
+                            }}</span>
                           </td>
                           <td class="text-center">
                             <ul class="table-controls">
                               <li>
-                                <a @click="editStaff(staff)"
-
-                                data-toggle="modal"
-                            data-target=".bd-example-modal-lg"
+                                <a
+                                  @click="editStaff(staff)"
+                                  data-toggle="modal"
+                                  data-target=".bd-example-modal-lg"
                                   href="javascript:void(0);"
-                                  class="bs-tooltip" 
+                                  class="bs-tooltip"
                                   data-original-title="Edit"
                                   ><svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -216,10 +190,10 @@
                                 <a
                                   href="javascript:void(0);"
                                   class="bs-tooltip"
-                                 data-toggle="modal"
-                            data-target=".delete-modal"
+                                  data-toggle="modal"
+                                  data-target=".delete-modal"
                                   data-placement="top"
-                                   @click="deleteStaff(staff)"
+                                  @click="deleteStaff(staff)"
                                   title=""
                                   data-original-title="Delete"
                                   ><svg
@@ -247,14 +221,9 @@
                     </table>
                   </div>
                   <div
-                    class="
-                      dt--bottom-section
-                      d-sm-flex
-                      justify-content-sm-between
-                      text-center
-                    "
+                    class="dt--bottom-section d-sm-flex justify-content-sm-between text-center"
                   >
-                    <div   class="dt--pages-count mb-sm-0 mb-3">
+                    <div class="dt--pages-count mb-sm-0 mb-3">
                       <div
                         class="dataTables_info"
                         id="style-3_info"
@@ -293,9 +262,7 @@
                                 class="feather feather-arrow-left"
                               >
                                 <line x1="19" y1="12" x2="5" y2="12"></line>
-                                <polyline
-                                  points="12 19 5 12 12 5"
-                                ></polyline></svg
+                                <polyline points="12 19 5 12 12 5"></polyline></svg
                             ></a>
                           </li>
                           <li class="paginate_button page-item active">
@@ -318,10 +285,7 @@
                               >2</a
                             >
                           </li>
-                          <li
-                            class="paginate_button page-item next"
-                            id="style-3_next"
-                          >
+                          <li class="paginate_button page-item next" id="style-3_next">
                             <a
                               href="#"
                               aria-controls="style-3"
@@ -341,9 +305,7 @@
                                 class="feather feather-arrow-right"
                               >
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
-                                <polyline
-                                  points="12 5 19 12 12 19"
-                                ></polyline></svg
+                                <polyline points="12 5 19 12 12 19"></polyline></svg
                             ></a>
                           </li>
                         </ul>
@@ -370,12 +332,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="myLargeModalLabel">Large</h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <svg
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
@@ -399,7 +356,6 @@
               <div class="row">
                 <div class="col-md-6">
                   <input
-                  
                     v-model="form.name"
                     type="text"
                     name="txt"
@@ -416,7 +372,6 @@
                 </div>
                 <div class="col-md-6">
                   <input
- 
                     v-bind:class="{
                       'is-invalid': $page.props.errors.email,
                     }"
@@ -434,13 +389,10 @@
               </div>
             </div>
 
-
-
-          <div class="form-group">
+            <div class="form-group">
               <div class="row">
                 <div class="col-md-6">
                   <input
-                     
                     v-model="form.password"
                     type="password"
                     name="txt1"
@@ -457,7 +409,6 @@
                 </div>
                 <div class="col-md-6">
                   <input
-                 
                     v-bind:class="{
                       'is-invalid': $page.props.errors.password_confirmation,
                     }"
@@ -474,7 +425,6 @@
                 </div>
               </div>
             </div>
-
 
             <div class="form-group">
               <div class="row">
@@ -501,7 +451,6 @@
 
                 <div class="col-md-6">
                   <input
-                    
                     v-model="form.PhoneNumber"
                     type="text"
                     v-bind:class="{
@@ -518,160 +467,136 @@
                 </div>
               </div>
             </div>
-              <hr />
-              <div class="row d-flex justify-content-center">
-                <div class="col-md-5">
-                  <div
-                    class="custom-file-container"
-                    data-upload-id="myFirstImage"
-                  >
-                    <label
-                      >Kebele Id
+            <hr />
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-5">
+                <div class="custom-file-container" data-upload-id="myFirstImage">
+                  <label
+                    >Kebele Id
 
-                      <a
-                        href="javascript:void(0)"
-                        class="custom-file-container__image-clear"
-                        title="Clear Image"
-                        >x</a
-                      ></label
-                    >
-                    <p class="text-danger">
-                      {{ $page.props.errors.scannedKebeleId }}
-                    </p>
-                    <label class="custom-file-container__custom-file">
-                      <input
-                        type="file"
-                        accept="image/*"
-                        enctype="multipart/form-data"
-                        @input="form.scannedKebeleId = $event.target.files[0]"
-                        class="
-                          custom-file-container__custom-file__custom-file-input
-                        "
-                        @change="previewKebele"
-                      />
-                      <input
-                        type="hidden"
-                        name="MAX_FILE_SIZE"
-                        value="10485760"
-                      />
-                      <span
-                        class="
-                          custom-file-container__custom-file__custom-file-control
-                        "
-                        >Choose file...
-                        <span
-                          class="
-                            custom-file-container__custom-file__custom-file-control__button
-                          "
-                        >
-                          Browse
-                        </span></span
-                      >
-                    </label>
-                    <div
-                      class="mt-5"
-                      style="
-                        height: 15rem;
-                        border: 2px solid #7d93f9;
-                        border-radius: 10px;
-                        overflow: hidden;
-                      "
-                    >
-                      <img
-                        v-if="preview2"
-                        :src="preview2"
-                        style="width: 100%; height: 100%"
-                        class="img-fluid"
-                      />
-                      <img
-                        v-if="!preview2"
-                        src="assets/assets/img/imagepreview.png"
-                        style="width: 100%; height: 100%"
-                        alt=""
-                        srcset=""
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-5">
-                  <div
-                    class="custom-file-container"
-                    data-upload-id="myFirstImage"
+                    <a
+                      href="javascript:void(0)"
+                      class="custom-file-container__image-clear"
+                      title="Clear Image"
+                      >x</a
+                    ></label
                   >
-                    <label
-                      >Profile Picture
-                      <a
-                        href="javascript:void(0)"
-                        class="custom-file-container__image-clear"
-                        title="Clear Image"
-                        >x</a
-                      ></label
-                    >
-                    <p class="text-danger">
-                      {{ $page.props.errors.profile }}
-                    </p>
-                    <label class="custom-file-container__custom-file">
-                      <input
-                        type="file"
-                        enctype="multipart/form-data"
-                        @change="previewImage"
-                        @input="form.profile = $event.target.files[0]"
-                        class="
-                          custom-file-container__custom-file__custom-file-input
-                        "
-                        accept="image/*"
-                      />
-                      <input
-                        type="hidden"
-                        name="MAX_FILE_SIZE"
-                        value="10485760"
-                      />
+                  <p class="text-danger">
+                    {{ $page.props.errors.scannedKebeleId }}
+                  </p>
+                  <label class="custom-file-container__custom-file">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      enctype="multipart/form-data"
+                      @input="form.scannedKebeleId = $event.target.files[0]"
+                      class="custom-file-container__custom-file__custom-file-input"
+                      @change="previewKebele"
+                    />
+                    <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                    <span class="custom-file-container__custom-file__custom-file-control"
+                      >Choose file...
                       <span
-                        class="
-                          custom-file-container__custom-file__custom-file-control
-                        "
-                        >Choose file...<span
-                          class="
-                            custom-file-container__custom-file__custom-file-control__button
-                          "
-                        >
-                          Browse
-                        </span></span
+                        class="custom-file-container__custom-file__custom-file-control__button"
                       >
-                    </label>
-                    <div
-                      class="mt-5"
-                      style="
-                        height: 15rem;
-                        border: 2px solid #7d93f9;
-                        border-radius: 10px;
-                        overflow: hidden;
-                      "
+                        Browse
+                      </span></span
                     >
-                      <img
-                        v-if="preview"
-                        :src="preview"
-                        style="width: 100%; height: 100%"
-                        class="img-fluid"
-                      />
-                      <img
-                        v-else-if="!preview"
-                        src="assets/assets/img/imagepreview.png"
-                        style="width: 100%; height: 100%"
-                        alt=""
-                        srcset=""
-                      />
-                    </div>
+                  </label>
+                  <div
+                    class="mt-5"
+                    style="
+                      height: 15rem;
+                      border: 2px solid #7d93f9;
+                      border-radius: 10px;
+                      overflow: hidden;
+                    "
+                  >
+                    <img
+                      v-if="preview2"
+                      :src="preview2"
+                      style="width: 100%; height: 100%"
+                      class="img-fluid"
+                    />
+                    <img
+                      v-if="!preview2"
+                      src="assets/assets/img/imagepreview.png"
+                      style="width: 100%; height: 100%"
+                      alt=""
+                      srcset=""
+                    />
                   </div>
                 </div>
               </div>
-            
+              <div class="col-md-5">
+                <div class="custom-file-container" data-upload-id="myFirstImage">
+                  <label
+                    >Profile Picture
+                    <a
+                      href="javascript:void(0)"
+                      class="custom-file-container__image-clear"
+                      title="Clear Image"
+                      >x</a
+                    ></label
+                  >
+                  <p class="text-danger">
+                    {{ $page.props.errors.profile }}
+                  </p>
+                  <label class="custom-file-container__custom-file">
+                    <input
+                      type="file"
+                      enctype="multipart/form-data"
+                      @change="previewImage"
+                      @input="form.profile = $event.target.files[0]"
+                      class="custom-file-container__custom-file__custom-file-input"
+                      accept="image/*"
+                    />
+                    <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                    <span class="custom-file-container__custom-file__custom-file-control"
+                      >Choose file...<span
+                        class="custom-file-container__custom-file__custom-file-control__button"
+                      >
+                        Browse
+                      </span></span
+                    >
+                  </label>
+                  <div
+                    class="mt-5"
+                    style="
+                      height: 15rem;
+                      border: 2px solid #7d93f9;
+                      border-radius: 10px;
+                      overflow: hidden;
+                    "
+                  >
+                    <img
+                      v-if="preview"
+                      :src="preview"
+                      style="width: 100%; height: 100%"
+                      class="img-fluid"
+                    />
+                    <img
+                      v-else-if="!preview"
+                      src="assets/assets/img/imagepreview.png"
+                      style="width: 100%; height: 100%"
+                      alt=""
+                      srcset=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <div class="modal-footer">
               <button class="btn" data-dismiss="modal">
                 <i class="flaticon-cancel-12"></i> Discard
               </button>
-                <button v-if="isUpdate" type="button" @click="UpdateStaff1" class="btn btn-primary">
+              <button
+                v-if="isUpdate"
+                type="button"
+                @click="UpdateStaff1"
+                class="btn btn-primary"
+              >
                 Update
               </button>
 
@@ -684,50 +609,116 @@
       </div>
     </div>
 
+    <div
+      class="modal fade delete-modal show"
+      tabindex="-1"
+      aria-labelledby="mySmallModalLabel"
+      aria-modal="true"
+      role="dialog"
+    >
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="mySmallModalLabel">Are you sure</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-x"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="modal-text text-danger">
+              this data if once deleted form database we will not able to recover data
+              please make sure before take action
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn" data-dismiss="modal">
+              <i class="flaticon-cancel-12"></i> Discard
+            </button>
+            <button type="button" @click="deletedStaff" class="btn btn-danger">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-<div class="modal fade delete-modal show" tabindex="-1" aria-labelledby="mySmallModalLabel" aria-modal="true" role="dialog">
-                                        <div class="modal-dialog modal-sm" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="mySmallModalLabel">Are you sure</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                      <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <p class="modal-text text-danger">
-                                                    this data if once deleted form database we will not able to recover data please make sure before take action
-                                                    </p>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
-                                                    <button type="button" @click="deletedStaff" class="btn btn-danger">Delete</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-    <div class="modal fade register-modal show" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-modal="true" >
-                                      <div class="modal-dialog"   role="document">
-                                        <div class="modal-content">
-
-                                          <div class="modal-header" id="registerModalLabel">
-                                            <h4 class="modal-title">Card</h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
-                                          </div>
-                                          <div class="modal-body" style="overflow:hidden; ">
-                                            <img style="width:100%; height:65vh; " :src="cardPreview" alt="" srcset="">
-                                          </div>
-                                          <div class="modal-footer justify-content-center">
-                                            <div class="forgot login-footer">
-                                                <span>  <a href="javascript:void(0);">
-                                                <button class="btn btn-danger px-3 mb-2 mr-2">Download<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> </button>
-                                                </a></span>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
+    <div
+      class="modal fade register-modal show"
+      id="registerModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="registerModalLabel"
+      aria-modal="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header" id="registerModalLabel">
+            <h4 class="modal-title">Card</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="feather feather-x"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+          <div class="modal-body" style="overflow: hidden">
+            <img style="width: 100%; height: 65vh" :src="cardPreview" alt="" srcset="" />
+          </div>
+          <div class="modal-footer justify-content-center">
+            <div class="forgot login-footer">
+              <span>
+                <a href="javascript:void(0);">
+                  <button class="btn btn-danger px-3 mb-2 mr-2">
+                    Download<svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="feather feather-download"
+                    >
+                      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                      <polyline points="7 10 12 15 17 10"></polyline>
+                      <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                  </button> </a
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </app-layout>
 </template>
 
@@ -745,22 +736,21 @@ b.setAttribute("src", "assets/plugins/table/datatable/datatables.js");
 document.head.appendChild(b);
 
 export default {
-
-  props:{
-     staffs: Object,
+  props: {
+    staffs: Object,
   },
   components: {
     AppLayout,
     Welcome,
     Header,
   },
- 
+
   data() {
     return {
       preview: null,
       preview2: null,
-      cardPreview:null,
-      isUpdate:null,
+      cardPreview: null,
+      isUpdate: null,
       form: {
         name: "",
         email: "",
@@ -813,135 +803,111 @@ export default {
         preserveState: (page) => Object.keys(page.props.errors).length,
       });
     },
-    cardModal(data){
-    this.cardPreview = data;
+    cardModal(data) {
+      this.cardPreview = data;
     },
-    editStaff(staff){
-      this.isUpdate = staff.id,
-      
-        this.form.name = staff.name
-        this.form.email = staff.email
-        this.form.PhoneNumber = staff.phoneNumber
-        this.form.password = staff.password
-        this.form.shift_id = staff.shift_id
-         this.form.scannedKebeleId = staff.scannedKebeleId
-        this.form.role = staff.role
-         this.preview2 = staff.scanned_kebele_id
-         this.preview = staff.profile_photo_path
-       
-        
-        
+    editStaff(staff) {
+      (this.isUpdate = staff.id), (this.form.name = staff.name);
+      this.form.email = staff.email;
+      this.form.PhoneNumber = staff.phoneNumber;
+      this.form.password = staff.password;
+      this.form.shift_id = staff.shift_id;
+      this.form.scannedKebeleId = staff.scannedKebeleId;
+      this.form.role = staff.role;
+      this.preview2 = staff.scanned_kebele_id;
+      this.preview = staff.profile_photo_path;
 
-// this.form =  staff
+      // this.form =  staff
     },
-    AddModalTriger(){
-     
+    AddModalTriger() {
       this.isUpdate = false;
-     
-      
-      $('.bd-example-modal-lg').modal('show')
-    },
-      UpdateStaff1(){
-        console.log('is ')
-        
-             
-              Inertia.post(this.route('user.update',  this.isUpdate), this.form, {
-                  onBefore: (visit) => {},
-        onStart: (visit) => { 
 
+      $(".bd-example-modal-lg").modal("show");
+    },
+    UpdateStaff1() {
+      console.log("is ");
+
+      Inertia.post(this.route("user.update", this.isUpdate), this.form, {
+        onBefore: (visit) => {},
+        onStart: (visit) => {},
+        onProgress: (progress) => {},
+        onSuccess: (page) => {
+          document.querySelector(".modal-backdrop").style.display = "none";
+          const toast = swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            padding: "2em",
+          });
+          toast({
+            type: "success",
+            title: "Info Successfully Updated",
+            padding: "2em",
+          });
+        },
+        onError: (errors) => {},
+        onCancel: () => {},
+        onFinish: (visit) => {},
+        preserveState: (page) => Object.keys(page.props.errors).length,
+      });
+    },
+    deleteStaff(staff) {
+      this.isUpdate = staff.id;
+    },
+
+    deletedStaff() {
+      $(".delete-modal").modal("hide");
+      console.log("is deleting");
+      Inertia.post(this.route("user.delete", this.isUpdate), this.form, {
+        onBefore: (visit) => {},
+        onStart: (visit) => {
+          $.blockUI({
+            message:
+              '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-loader spin ml-2"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>',
+            fadeIn: 800,
+            timeout: 40000, //unblock after 2 seconds
+            overlayCSS: {
+              backgroundColor: "#1b2024",
+              opacity: 0.8,
+              zIndex: 1200,
+              cursor: "wait",
+            },
+            css: {
+              border: 0,
+              color: "#fff",
+              zIndex: 1201,
+              padding: 0,
+              backgroundColor: "transparent",
+            },
+          });
         },
         onProgress: (progress) => {},
         onSuccess: (page) => {
-        document.querySelector('.modal-backdrop').style.display="none";
-            const toast = swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    padding: '2em'
-  });
-  toast({
-    type: 'success',
-    title: 'Info Successfully Updated',
-    padding: '2em',
-  })
-          },
+          const toast = swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            padding: "2em",
+          });
+          toast({
+            type: "success",
+            title: "Info Successfully Updated",
+            padding: "2em",
+          });
+        },
         onError: (errors) => {},
         onCancel: () => {},
         onFinish: (visit) => {
-          
+          console.log("is finished");
+
+          document.querySelector(".blockOverlay").style.display = "none";
+          document.querySelector(".blockMsg").style.display = "none";
         },
         preserveState: (page) => Object.keys(page.props.errors).length,
-              })
-     
+      });
+    },
   },
-  deleteStaff(staff){
-    this.isUpdate = staff.id
-  },
-  
-  
-
-deletedStaff(){
-   $('.delete-modal').modal('hide')
-   console.log('is deleting')
-    Inertia.post(this.route('user.delete',  this.isUpdate), this.form, {
-   onBefore: (visit) => {},
-        onStart: (visit) => {
-
-           $.blockUI({
-        message: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-loader spin ml-2"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>',
-        fadeIn: 800, 
-        timeout: 40000, //unblock after 2 seconds
-        overlayCSS: {
-            backgroundColor: '#1b2024',
-            opacity: 0.8,
-            zIndex: 1200,
-            cursor: 'wait'
-        },
-        css: {
-            border: 0,
-            color: '#fff',
-            zIndex: 1201,
-            padding: 0,
-            backgroundColor: 'transparent'
-        },
-    })
-        },
-        onProgress: (progress) => {     },
-        onSuccess: (page) => {
-      const toast = swal.mixin({
-    toast: true,
-    position: 'top-end',
-    showConfirmButton: false,
-    timer: 3000,
-    padding: '2em'
-  });
-  toast({
-    type: 'success',
-    title: 'Info Successfully Updated',
-    padding: '2em',
-  })
-
-        },
-        onError: (errors) => {
-          
-          
-        },
-        onCancel: () => {},
-        onFinish: (visit) => {
-          console.log('is finished')
-           
-document.querySelector('.blockOverlay').style.display="none";
-document.querySelector('.blockMsg').style.display="none";
-
-        },
-        preserveState: (page) => Object.keys(page.props.errors).length,
-    })
-      
-  },
-
-  }
-}
-
-
+};
 </script>

@@ -1,16 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-use Milon\Barcode\DNS1D;
-use Milon\Barcode\DNS2D;
-use App\Models\Attendance;
- 
-use Illuminate\Support\Facades\Hash;
- 
-use Intervention\Image\Facades\Image;
 use App\Models\User;
 use Inertia\Inertia;
+use Milon\Barcode\DNS1D;
+ 
+use Milon\Barcode\DNS2D;
+ 
+use App\Models\Attendance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManagerStatic;
 
 class UserController extends Controller
@@ -28,22 +29,7 @@ class UserController extends Controller
         return Inertia::render('page/librariest', ['staffs'=> $data]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         // dd('is here')
@@ -75,8 +61,8 @@ class UserController extends Controller
         
         $picture1 = 'kebeleid'.time() . '.' . $request->scannedKebeleId->extension();
         $insert1 =  $request->scannedKebeleId->move(public_path('kebeleId'), $picture1);
-if($insert1){
-    $user->scanned_kebele_id = 'kebeleId/'.$picture1;
+        if($insert1){
+            $user->scanned_kebele_id = 'kebeleId/'.$picture1;
 }
 
 
@@ -215,6 +201,10 @@ if($insert1){
          return redirect(route('librarist'));
 
     }
+
+    
+
+
     public function frontRegister(Request $request){
 
         $request->validate([
@@ -243,8 +233,9 @@ if($insert1){
         $user->status = 'pending';
         $user->user_id = $request->id_num;
         $user->department = $request->dept_id;
+        $user->dept_id = $request->dept_id;
         $user->save();
-     
+     return redirect(route('login'));
 
     }
     /**
@@ -262,4 +253,93 @@ if($insert1){
         $user->delete();
         return redirect(route('librarist'));
     }
+///////////////////////////////Student /////////////////////////////
+public function studentupdate(Request $request, $id)
+    {
+
+       
+        dd($id);
+         
+         $user = User::findOrFail($id);
+         $user->name = $request->name;
+         $user->email = $request->email;
+          
+         
+         $user->phoneNumber = $request->PhoneNumber;
+         $user->role = 'staff';
+         $user->save();
+         $data = User::where('role', 'Staff')->get();
+         return redirect(route('student'));
+
+    }
+    public function studentApproved(Request $request, $id)
+    {
+       $user = User::where('id', $id)->first();
+       $user->status = "Approved";
+       $user->save();
+       return redirect(route('student'));
+
+    }
+    public function studentBlocked(Request $request, $id)
+    {
+        $user = User::where('id', $id)->first();
+        $user->status = "Blocked";
+        $user->save();
+        return redirect(route('student'));       
+    }
+    public function student()
+    {
+         
+        $data = User::where('role', 'student')->get();
+        //    dd($data);
+                return Inertia::render('page/student', ['staffs'=> $data]);
+    }
+
+
+public function userProfile()
+{
+     $user = Auth::user();
+    return Inertia::render('page/profile', ['user'=> $user]);
+}
+
+public function profileUpdate(Request $request)
+{
+   $user = Auth::user();
+    $request->validate([
+        // 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+        'name' => 'required|max:30',
+       
+        'email'  =>  'required|email|unique:users,email,'.$user->id,
+        
+        "campos" => "required",
+        'user_id'  =>  'required|unique:users,user_id,'.$user->id,
+        "phoneNumber" => "required|min:9",
+        "department" => "required",
+       
+        // 'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+        // 'password_confirmation' => 'min:6'
+    ]);
+$user->name = $request->name;
+$user->email = $request->email;
+ $user->campos = $request->campos;
+$user->user_id = $request->user_id;
+$user->phoneNumber = $request->phoneNumber;
+$user->department = $request->department;
+ 
+$user->save();
+return Inertia::render(route('profile.info'));
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

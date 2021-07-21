@@ -6,7 +6,7 @@
         <nav id="sidebar">
             <ul class="navbar-nav theme-brand flex-row text-center">
                 <li class="nav-item theme-text">
-                    <a href="index-2.html" class="nav-link"> wollo Universi </a>
+                    <a href="index-2.html" class="nav-link"> wollo University </a>
                 </li>
                 <li class="nav-item toggle-sidebar">
                     <svg
@@ -82,18 +82,40 @@
                 </li>
 
                
-                <li class="menu">
+                <li class="menu" v-if="$page.props.user.role == 'admin'"  >
                     <inertia-link :href="route('librarist')"
                         aria-expanded="false"
                         class="dropdown-toggle"
                     >
                         <div class="">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-briefcase"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
                         <span>Staff </span>
                         </div>
                     </inertia-link>
                 </li>
 
+                 <li class="menu"  v-if="$page.props.user.role == 'admin'">
+                    <inertia-link :href="route('student')"
+                        aria-expanded="false"
+                        class="dropdown-toggle"
+                    >
+                        <div class="">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <span>Student  </span>
+                        </div>
+                    </inertia-link>
+                </li>
+<li class="menu"  v-if="$page.props.user.role == 'admin'">
+                    <inertia-link :href="route('books')"
+                        aria-expanded="false"
+                        class="dropdown-toggle"
+                    >
+                        <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+                        <span>Books  </span>
+                        </div>
+                    </inertia-link>
+                </li>
                 <li class="menu">
                     <a
                         href="apps_notes.html"
@@ -311,7 +333,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+   props: {
+     user: Object,
+    },
+    data(){
+        return {
+            role:''
+        }
+       
+    },
+     mounted() {
+          
+          
+        },
+};
 </script>
 
 <style></style>

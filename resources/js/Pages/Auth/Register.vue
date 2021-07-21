@@ -26,7 +26,7 @@
                                      v-bind:class="{
                                                     'is-invalid': $page.props.errors.email,
                                                     }"
-                                    type="text" value="" placeholder="Email">
+                                    type="text"  placeholder="Email">
                                       <div class="text-danger"> {{ $page.props.errors.email }}</div>
                                 </div>
 
@@ -37,7 +37,7 @@
                                       v-bind:class="{
                                                     'is-invalid': $page.props.errors.password,
                                                     }"
-                                     name="password" type="password" value="" placeholder="Password">
+                                     name="password" type="password"  placeholder="Password">
                                      <div class="text-danger"> {{ $page.props.errors.password }}</div>
                                 </div>
                                 <div  class="field-wrapper input mb-2 col-md-5 mr-4   ">
@@ -46,7 +46,7 @@
                                      v-bind:class="{
                                                     'is-invalid': $page.props.errors.password_confirmation,
                                                     }"
-                                     id="password" name="password" type="password" value="" 
+                                  name="password" type="password"  
                                      placeholder="confirm password">
                                       <div class="text-danger"> {{ $page.props.errors.password_confirmation }}</div>
                                 </div>
@@ -97,7 +97,7 @@
                                          v-bind:class="{
                                                     'disabled': isloading == true,
                                                     }"
-                                         class="btn btn-primary " value="">
+                                         class="btn btn-primary " >
                                          <div class="spinner-border mx-4 text-white mr-2 align-self-center loader-xm"
                                            v-bind:class="{
                                                     'd-none': isloading == false,
@@ -184,10 +184,41 @@ import { Inertia } from "@inertiajs/inertia";
         onBefore: (visit) => {},
         onStart: (visit) => { this.isloading = true },
         onProgress: (progress) => {},
-        onSuccess: (page) => {},
-        onError: (errors) => {},
+        onSuccess: (page) => {
+
+                const toast = swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    padding: '2em'
+  });
+  toast({
+    type: 'success',
+    title: 'Successfully Registered',
+    padding: '2em',
+  })
+        },
+        onError: (errors) => {
+
+                const toast = swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    padding: '2em'
+  });
+  toast({
+    type: 'error',
+    title: 'Oops! something went wrong',
+    padding: '2em',
+  })
+        },
         onCancel: () => {},
-        onFinish: (visit) => { this.isloading = false},
+        onFinish: (visit) => { this.isloading = false
+     
+        
+        },
         preserveState: (page) => Object.keys(page.props.errors).length,
       });
             }
