@@ -124,7 +124,8 @@
                     <div class="row">
                     <div class="col-md-4" >
                     <img v-if="url" style="width:100%; border-radius:50%; border: 2px solid #4361e;  " :src="url" />
-                    <img v-else src="assets/woll.png" style="width:100%; " alt="" srcset="">
+                    <div v-else id="dd" class="spinner-grow text-secondary align-self-center p-4"></div>
+                    
                     <div class=" d-flex justify-content-center mt-1">
                      <input type="file" @change="onFileChange"  name="" hidden id="booktemp">
                     <label for="booktemp">
@@ -190,12 +191,29 @@ data() {
   },
   methods: {
     onFileChange(e) {
-      const file = e.target.files[0];
+       
+  setTimeout(function () {
+
+
+          console.log('is ssssss')
+
+    }, 3000);
+    
+ const file = e.target.files[0];
       this.url = URL.createObjectURL(file);
+console.log('is in ti')
+          
+
+  
+ 
+     
     }
   },
   mounted() {
     document.addEventListener("scroll", this.test);
   },
 };
+ 
+
+ 
 </script>

@@ -2346,3 +2346,17 @@ table .badge-info, table .badge-secondary, table .badge-dark  {
 	.component-card_9 .meta-action { margin-top: 16px; }
 	.component-card_9 .meta-info:before { width: 50%; }
 }
+.myspinner{
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    visibility: hidden;
+    width:100%;
+    position:fixed;
+    top:0px;
+    left:0px;
+    color:white;
+    z-index: 100;
+    height: 100%;
+    background:#000000c2;
+}

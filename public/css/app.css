@@ -1586,6 +1586,9 @@ select {
 .p-0 {
 	padding: 0px;
 }
+.p-4 {
+	padding: 1rem;
+}
 .p-1 {
 	padding: 0.25rem;
 }

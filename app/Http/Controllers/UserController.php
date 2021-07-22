@@ -32,13 +32,13 @@ class UserController extends Controller
     
     public function store(Request $request)
     {
-        // dd('is here')
+     
      
 
         $request->validate([
             // 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'name' => 'required|max:30',
-           
+           'user_id'=>'required|unique:users',
             'email' => 'required|unique:users',
             'password' => 'required|confirmed',
             "shift_id" => "required",
@@ -58,7 +58,8 @@ class UserController extends Controller
         $user->phoneNumber = $request->PhoneNumber;
         $user->role = 'staff';
         $user->status = 'Approved';
-        
+        $user->dept_id = 'staff';
+        $user->shift_id = $request->shift_id;
         $picture1 = 'kebeleid'.time() . '.' . $request->scannedKebeleId->extension();
         $insert1 =  $request->scannedKebeleId->move(public_path('kebeleId'), $picture1);
         if($insert1){
@@ -82,21 +83,14 @@ class UserController extends Controller
          $card->insert($pic, '', 570, 490);
          $hashedName = Hash::make($request->name);
 
-         $last = User::latest()->first();
-         $last_id = $last->user_id;
-         $now_id = "";
-         if(($last_id+1) < 10){
-            $now_id = "WOUR/000".( $last_id + 1);
-         }
+        $user->user_id = $request->user_id;
          
-        elseif(($last_id+1) < 100){
-             $now_id = "WOUR/00" . ($last_id + 1);
-}
+ 
 
          $dns = new DNS2D;
-         $last_id = $last_id + 1;
-         $hashed =Hash::make($last_id);
-         $barcode = Image::make($dns->getBarcodePNG($hashed, 'QRCODE'))->resize(500, 500);
+        
+          
+         $barcode = Image::make($dns->getBarcodePNG($request->user_id, 'QRCODE'))->resize(500, 500);
          $card->insert($barcode, '', 800, 2300);
 
 
@@ -109,7 +103,7 @@ class UserController extends Controller
             $font->valign('top');
             $font->angle(0);
         });
-        $card->text('Id: '.$now_id, 700, 1700, function ($font) {
+        $card->text('Id: '.$request->id, 700, 1700, function ($font) {
             $font->file(public_path('css/id.ttf'));
             $font->size(80);
             $font->color('#757592');
@@ -140,11 +134,11 @@ class UserController extends Controller
  
         //  dd($card->basename);
         $user->qr = 'cards/'.$card->basename;
-         $user->user_id = $last_id;
+      
       
          $user->save();
-
-
+         return back();
+ 
  
 
 

@@ -328,10 +328,10 @@
       aria-modal="true"
       role="dialog"
     >
-      <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="myLargeModalLabel">Large</h5>
+            <h5 class="modal-title" id="myLargeModalLabel">Staff Registration </h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <svg
                 aria-hidden="true"
@@ -391,7 +391,7 @@
 
             <div class="form-group">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <input
                     v-model="form.password"
                     type="password"
@@ -407,7 +407,7 @@
                     {{ $page.props.errors.password }}
                   </p>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <input
                     v-bind:class="{
                       'is-invalid': $page.props.errors.password_confirmation,
@@ -423,28 +423,45 @@
                     {{ $page.props.errors.password_confirmation }}
                   </p>
                 </div>
+
+                <div class="col-md-4">
+                 <input
+                    v-bind:class="{
+                      'is-invalid': $page.props.errors.user_id,
+                    }"
+                    type="text"
+                    v-model="form.user_id"
+                    name="id"
+                    placeholder="ID Number "
+                    class="form-control"
+                    required=""
+                    
+                  />
+                  <p class="text-danger">
+                    {{ $page.props.errors.user_id }}
+                  </p>
+                </div>
               </div>
             </div>
 
             <div class="form-group">
               <div class="row">
                 <div class="col-md-6">
-                  <div class="bootstrap-select">
+                  <div class=" ">
                     <p class="text-danger">
                       {{ $page.props.errors.shift_id }}
                     </p>
-                    <select
-                      class="selectpicker"
+                    <select   class="form-select form-control form-select-lg mb-3" aria-label=".form-select-lg example"
                       v-model="form.shift_id"
                       v-bind:class="{
                         'is-invalid': $page.props.errors.shift_id,
                       }"
                       tabindex="-98"
                     >
-                      <option title="Select Staff Shift "></option>
-                      <option title="Morning">Morning</option>
-                      <option title="Afternoon">Afternoon</option>
-                      <option title="Night">Night</option>
+                      <option  selected value="ddd" >  Select Staff Shift </option>
+                      <option value="Morning">Morning</option>
+                      <option  value="Afternoon" >Afternoon</option>
+                      <option  value="Night">Night</option>
                     </select>
                   </div>
                 </div>
@@ -759,6 +776,7 @@ export default {
         role: "",
         scannedKebeleId: "",
         qr: "",
+        user_id:"WOUR/",
         password: "",
         password_confirmation: "",
         shift_id: "",
@@ -794,12 +812,35 @@ export default {
       //  this.form.post(this.route('user.store'))
       Inertia.post(this.route("user.store"), this.form, {
         onBefore: (visit) => {},
-        onStart: (visit) => {},
-        onProgress: (progress) => {},
-        onSuccess: (page) => {},
+        
+        
+        
         onError: (errors) => {},
         onCancel: () => {},
-        onFinish: (visit) => {},
+
+         onStart: (visit) => {
+              $(".bd-example-modal-lg").modal("hide");
+         document.querySelector('.myspinner').style.visibility="visible"
+         },
+        onProgress: (progress) => {},
+        onSuccess: (page) => {
+          const toast = swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            padding: "2em",
+          });
+          toast({
+            type: "success",
+            title: "Info Successfully Updated",
+            padding: "2em",
+          });
+        },
+        onFinish: (visit) => {
+  document.querySelector('.myspinner').style.visibility="hidden"
+
+        },
         preserveState: (page) => Object.keys(page.props.errors).length,
       });
     },
@@ -812,6 +853,7 @@ export default {
       this.form.PhoneNumber = staff.phoneNumber;
       this.form.password = staff.password;
       this.form.shift_id = staff.shift_id;
+      this.form.user_id = staff.user_id;
       this.form.scannedKebeleId = staff.scannedKebeleId;
       this.form.role = staff.role;
       this.preview2 = staff.scanned_kebele_id;
