@@ -1,8 +1,5 @@
 <template>
- 
-
-
-    <div class="form-container">
+     <div class="form-container">
         <div class="form-form">
             <div class="form-form-wrap">
                 <div class="form-container">
@@ -14,9 +11,9 @@
                        
                       <jet-validation-errors class="mb-4 text-danger" />
                     <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
+            {{ status.email }}
         </div>
-                        <form @submit.prevent="submit" class="text-left">
+                        <form @submit.prevent="submit" class="text-left box">
                             <div class="form">
 
                                 <div id="username-field" class="field-wrapper input">
@@ -72,8 +69,19 @@
             </div>
         </div>
     </div>
-</template>
 
+</template>
+ <style scoped>
+ .box{
+     background-color: #eee;
+     padding:2rem;
+     border-radius: 10px;
+ }
+ input{
+     background:#e4e4e4;
+ }
+ </style>
+ 
 <script>
     import JetAuthenticationCard from '@/Jetstream/AuthenticationCard'
     import JetAuthenticationCardLogo from '@/Jetstream/AuthenticationCardLogo'

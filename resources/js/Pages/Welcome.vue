@@ -1,5 +1,5 @@
 <template>
-<div class="bo" style=" background-image:linear-gradient(#000000ad, black), url('assets/22.jpg');">
+<div class="bo" style=" background-image:linear-gradient(#00000040, #000000bf), url('assets/22.jpg');">
 
 <div class="log">
 <img src="assets/woll.png" alt="" srcset="">

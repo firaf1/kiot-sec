@@ -36,6 +36,7 @@
     <link href="{{ asset('assets/assets/css/dashboard/dash_1.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/file-upload/file-upload-with-preview.min.css') }}" rel="stylesheet"
         type="text/css" />
+        <link href="{{ asset('assets/assets/css/components/custom-modal.css') }}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/dropify/dropify.min.css') }}">
         <link href="{{ asset('assets/assets/css/users/account-setting.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/plugins/loaders/custom-loader.css') }}" rel="stylesheet" type="text/css" />

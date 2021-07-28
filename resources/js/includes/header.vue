@@ -635,7 +635,7 @@
                                 </a>
                             </div>
                             <div class="dropdown-item">
-                                <inertia-link  :href="route('logout')" method="delete">
+                                <inertia-link  :href="route('logout')" >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="24"

@@ -103,7 +103,7 @@ class UserController extends Controller
             $font->valign('top');
             $font->angle(0);
         });
-        $card->text('Id: '.$request->id, 700, 1700, function ($font) {
+        $card->text('Id: '.$request->user_id, 700, 1700, function ($font) {
             $font->file(public_path('css/id.ttf'));
             $font->size(80);
             $font->color('#757592');

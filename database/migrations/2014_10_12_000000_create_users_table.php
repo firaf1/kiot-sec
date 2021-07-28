@@ -22,6 +22,17 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();
+            $table->string('campos')->nullable();
+            $table->string('department')->nullable();
+            $table->string('batch')->nullable();
+            $table->text('phoneNumber')->nullable();
+            $table->text('scanned_kebele_id')->nullable();
+            $table->text('qr')->nullable();
+            $table->string('shift_id')->nullable();
+            $table->string('role')->nullable();
+            $table->string('status')->nullable();
+            $table->string('user_id')->nullable();
+            
             $table->timestamps();
         });
     }

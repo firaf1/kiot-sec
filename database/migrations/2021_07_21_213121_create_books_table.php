@@ -18,8 +18,10 @@ class CreateBooksTable extends Migration
             $table->id();
             $table->text('title');
             $table->string('user_id')->nullable();
+            $table->string('book_id');
             $table->string('amount');
             $table->string('tumb');
+            $table->string('status');
             $table->text('description');
             $table->timestamps();
         });

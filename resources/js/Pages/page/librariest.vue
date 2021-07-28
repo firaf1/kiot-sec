@@ -711,9 +711,10 @@
           <div class="modal-footer justify-content-center">
             <div class="forgot login-footer">
               <span>
-                <a href="javascript:void(0);">
-                  <button class="btn btn-danger px-3 mb-2 mr-2">
-                    Download<svg
+                <a :href="cardPreview" download class="btn btn-danger px-3 mb-2 mr-2">
+                  
+                    Download
+                    <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"
                       height="24"
@@ -729,7 +730,8 @@
                       <polyline points="7 10 12 15 17 10"></polyline>
                       <line x1="12" y1="15" x2="12" y2="3"></line>
                     </svg>
-                  </button> </a
+                   
+                   </a
               ></span>
             </div>
           </div>

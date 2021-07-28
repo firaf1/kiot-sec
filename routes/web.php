@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\auth\AuthConroller;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,11 +36,20 @@ Route::middleware('auth')->group(function () {
     Route::post('Student-approved1/{id}', [UserController::class, 'studentApproved'])->name('students.approved')->middleware('isAdmin');
     Route::post('Student-approved/{id}', [UserController::class, 'studentBlocked'])->name('student.Blocked')->middleware('isAdmin');
     
-    Route::delete('logout', [AuthConroller::class, 'destroy'])->name('logout')->middleware('isAdmin');
+    Route::delete('logout', [AuthConroller::class, 'destroy'])->name('logout');
 Route::get('Add-Staff',  [UserController::class, 'index'])->name('librarist')->middleware('isAdmin');
 
       /////////////////Books/////////////
       Route::get('Books', [BooksController::class, 'index'])->name('books')->middleware('isAdmin');
+      Route::post('Add-books',  [BooksController::class, 'AddBook'])->name('add-book')->middleware('isAdmin');
+      Route::get('book-unapproved/{id}', [BooksController::class, 'unapproved'])->name('block-unapprove')->middleware('isAdmin');
+      Route::get('book-approve/{id}', [BooksController::class, 'approve'])->name('approve-book')->middleware('isAdmin');
+      Route::post('book-update/{id}', [BooksController::class, 'update'])->name('book-update')->middleware('isAdmin');
+      Route::get('book-destroy/{id}', [BooksController::class, 'destroy'])->name('book-destroy')->middleware('isAdmin');
+//////////////////Book borrow ?////////////////////////
+Route::get('book-Borrow', [BooksController::class, 'Borrow'])->name('book-borrow')->middleware('isAdmin');
+
+
 
 
 Route::get('Profile-Info', [UserController::class, 'userProfile'])->name('profile.info');
@@ -64,7 +73,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard')->middleware('isAdmin');
 });
 
-Route::post('front-register', [UserController::class, 'frontRegister'])->name('front.register')->middleware('isAdmin');
+Route::post('front-register', [UserController::class, 'frontRegister'])->name('front.register');
     
 
 Route::get('/', function () {
