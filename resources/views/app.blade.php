@@ -9,7 +9,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!--Bootstrap css -->
     <!-- <script src="{{ mix('css/app.css') }}" defer></script> -->
-    
+    <link href="{{ asset('assets/assets/css/components/cards/card.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/table/datatable/dt-global_style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/table/datatable/custom_dt_custom.css') }}">
@@ -29,13 +29,11 @@
     <link href="{{ asset('assets/assets/css/components/custom-sweetalert.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/assets/css/authentication/form-1.css') }}" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/forms/theme-checkbox-radio.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/assets/css/forms/switches.css') }}">
+ 
     <link href="{{ asset('assets/plugins/apex/apexcharts.css') }}" rel="stylesheet" type="text/css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/animate/animate.css') }}">
     <link href="{{ asset('assets/assets/css/dashboard/dash_1.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/plugins/file-upload/file-upload-with-preview.min.css') }}" rel="stylesheet"
-        type="text/css" />
+ 
         <link href="{{ asset('assets/assets/css/components/custom-modal.css') }}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/dropify/dropify.min.css') }}">
         <link href="{{ asset('assets/assets/css/users/account-setting.css') }}" rel="stylesheet" type="text/css" />
@@ -109,7 +107,7 @@
     <script src="{{ asset('assets/assets/js/dashboard/dash_1.js') }}"></script>
     <script src="{{ asset('assets/plugins/bootstrap-select/bootstrap-select.min.js') }}"></script>
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
-    <script src="{{ asset('assets/plugins/file-upload/file-upload-with-preview.min.js') }}"></script>
+ 
     <script src="{{ asset('assets/plugins/blockui/jquery.blockUI.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalerts/sweetalert2.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/sweetalerts/custom-sweetalert.js') }}"></script>

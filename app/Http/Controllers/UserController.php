@@ -88,9 +88,13 @@ class UserController extends Controller
  
 
          $dns = new DNS2D;
-        
-          
-         $barcode = Image::make($dns->getBarcodePNG($request->user_id, 'QRCODE'))->resize(500, 500);
+         $str=rand(); 
+
+    $result = md5($str); 
+    
+    $qr_data = "KIOT-".substr($result, 0, 10);
+          $user->qr_data = $qr_data;
+         $barcode = Image::make($dns->getBarcodePNG($qr_data, 'QRCODE'))->resize(700, 700);
          $card->insert($barcode, '', 800, 2300);
 
 
@@ -274,6 +278,18 @@ public function studentupdate(Request $request, $id)
        return redirect(route('student'));
 
     }
+    public function ProfileImage(Request $request)
+    {
+    $image = $request->profileImage;
+ 
+    $picture1 = 'kebeleid'.time() . '.' .$request->profileImage->extension();
+    $insert1 =  $request->profileImage->move(public_path('ProfileImage'), $picture1);
+  
+     $user = User::find(Auth::user()->id);
+     $user->profile_photo_path = 'ProfileImage/'.$picture1;
+     $user->save();
+     return redirect()->back(); 
+    }
     public function studentBlocked(Request $request, $id)
     {
         $user = User::where('id', $id)->first();
@@ -298,21 +314,22 @@ public function userProfile()
 
 public function profileUpdate(Request $request)
 {
+     
    $user = Auth::user();
-    $request->validate([
-        // 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
-        'name' => 'required|max:30',
+    // $request->validate([
+    //     // 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+    //     'name' => 'required|max:30',
        
-        'email'  =>  'required|email|unique:users,email,'.$user->id,
+    //     'email'  =>  'required|email|unique:users,email,'.$user->id,
         
-        "campos" => "required",
-        'user_id'  =>  'required|unique:users,user_id,'.$user->id,
-        "phoneNumber" => "required|min:9",
-        "department" => "required",
+    //     "campos" => "required",
+    //     'user_id'  =>  'required|unique:users,user_id,'.$user->id,
+    //     "phoneNumber" => "required|min:9",
+    //     "department" => "required",
        
-        // 'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
-        // 'password_confirmation' => 'min:6'
-    ]);
+    //     // 'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+    //     // 'password_confirmation' => 'min:6'
+    // ]);
 $user->name = $request->name;
 $user->email = $request->email;
  $user->campos = $request->campos;

@@ -18,7 +18,14 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('my', function()
+{
+    $str=rand(); 
 
+    $result = md5($str); 
+    
+    echo substr($result, 0, 10);
+});
 Route::middleware('auth')->group(function () {
     
  
@@ -47,14 +54,14 @@ Route::get('Add-Staff',  [UserController::class, 'index'])->name('librarist')->m
       Route::post('book-update/{id}', [BooksController::class, 'update'])->name('book-update')->middleware('isAdmin');
       Route::get('book-destroy/{id}', [BooksController::class, 'destroy'])->name('book-destroy')->middleware('isAdmin');
 //////////////////Book borrow ?////////////////////////
-Route::get('book-Borrow', [BooksController::class, 'Borrow'])->name('book-borrow')->middleware('isAdmin');
+Route::get('book-Borrow', [BooksController::class, 'Borrow'])->name('book-borrow');
 
 
 
 
 Route::get('Profile-Info', [UserController::class, 'userProfile'])->name('profile.info');
 Route::post('Profile-update', [UserController::class, 'profileUpdate'])->name('profile.update');
-
+Route::post('Profile-Image', [UserController::class, 'ProfileImage'])->name('profileImage');
 
     
  

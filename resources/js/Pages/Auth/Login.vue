@@ -53,12 +53,12 @@
                                 </div>
 
                                 <div class="field-wrapper">
-                                    <a href="auth_pass_recovery.html" class="forgot-pass-link">Forgot Password?</a>
+                                    <a :href=" route('register') " class="forgot-pass-link">Already have Account?</a>
                                 </div>
 
                             </div>
                         </form>                        
-                        <p class="terms-conditions">© 2020 All Rights Reserved. <a href="index-2.html">CORK</a> is a product of Designreset. <a href="javascript:void(0);">Cookie Preferences</a>, <a href="javascript:void(0);">Privacy</a>, and <a href="javascript:void(0);">Terms</a>.</p>
+                        <p class="terms-conditions">© 2020 All Rights Reserved. <a href="index-2.html">WOLLO UNVERSITY KIOT</a>  </p>
 
                     </div>                    
                 </div>

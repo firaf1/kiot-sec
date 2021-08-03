@@ -1,5 +1,8 @@
 <template>
-<div class="bo" style=" background-image:linear-gradient(#00000040, #000000bf), url('assets/22.jpg');">
+<div class="bo" style=" background-image:linear-gradient(#0000008f, #000000), url('assets/22.jpg');
+background-size:cover;
+height:100%;
+">
 
 <div class="log">
 <img src="assets/woll.png" alt="" srcset="">
@@ -54,6 +57,7 @@
      display: flex;
      justify-content: center;
      align-items: center;
+     
 }
 .log{
   display: flex;
@@ -87,7 +91,7 @@
   color: #2b0124;
 }
 .bo {
-     height: 100vh;
+     height: 100vh!important;
      background-repeat: no-repeat;
      background-size: cover;
      background-position:center;

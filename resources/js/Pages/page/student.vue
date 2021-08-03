@@ -80,7 +80,7 @@
                             colspan="1"
                             aria-label="First Name: activate to sort column ascending"
                           >
-                            First Name
+                            Full Name
                           </th>
 
                           <th
