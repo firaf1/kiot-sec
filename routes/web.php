@@ -1,13 +1,15 @@
 <?php
 
+use App\Models\User;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Qrcontroller;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\auth\AuthConroller;
-use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,7 +30,7 @@ Route::get('my', function()
 });
 Route::middleware('auth')->group(function () {
     
- 
+ Route::post('Id-Scanned', [Qrcontroller::class, 'borrow'])->name('qr_Scanned');
 
 
 
@@ -54,9 +56,9 @@ Route::get('Add-Staff',  [UserController::class, 'index'])->name('librarist')->m
       Route::post('book-update/{id}', [BooksController::class, 'update'])->name('book-update')->middleware('isAdmin');
       Route::get('book-destroy/{id}', [BooksController::class, 'destroy'])->name('book-destroy')->middleware('isAdmin');
 //////////////////Book borrow ?////////////////////////
-Route::get('book-Borrow', [BooksController::class, 'Borrow'])->name('book-borrow');
+Route::get('Availabel-Books', [BooksController::class, 'availablebook'])->name('book-borrow');
 
-
+Route::get('Borrow', [BooksController::class, 'borrow'])->name('borrow');
 
 
 Route::get('Profile-Info', [UserController::class, 'userProfile'])->name('profile.info');

@@ -98,7 +98,7 @@
 <link href="{{ asset('assets/plugins/apex/apexcharts.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('assets/assets/css/dashboard/dash_2.css') }}" rel="stylesheet" type="text/css" />
 
-<script src="{{ asset('assets/assets/js/authentication/form-2.js') }}"></script>
+    <link href="{{ asset('assets/assets/css/users/user-profile.css') }}" rel="stylesheet" type="text/css" />
     <script src="{{ asset('assets/assets/js/custom.js') }}"></script>
     <!-- END GLOBAL MANDATORY SCRIPTS -->
 

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Inertia\Inertia;
+use App\Models\Borrow;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Inertia\Inertia;
 
 class BooksController extends Controller
 {
@@ -116,9 +117,19 @@ class BooksController extends Controller
         
 return back();
     }
-public function Borrow()
+public function availablebook()
 {
-    return Inertia::render('page/borrow/bookBorrow');
-}
+    
+    $books = Book::where('status', 'Approved',)->where('amount', '!=', 0)->get();
 
+    return Inertia::render('page/borrow/availablebook', ['books'=>$books]);
+}
+public function borrow()
+{
+ 
+     $books = Borrow::all();
+     $books->load(['user']);
+     $books->load(['book']);
+    return Inertia::render('page/borrow/bookborrow', ['books'=>$books]);
+}
 }
