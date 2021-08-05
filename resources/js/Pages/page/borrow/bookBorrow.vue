@@ -11,7 +11,8 @@
                                              
     </select>
     <div class="col-md-6">
-    <input type="text" class="form-control"   v-model="form.qr"  @keyup="qrScanned" name="" id="">
+    <input type="text" style="opacity:1; " class="form-control" @blur="inputFocuss()" 
+      v-model="form.qr"  @keyup="qrScanned" name="" id="qr">
     </div>
              </div>
    
@@ -98,8 +99,8 @@
         </div>
       </div>
     </div>
-
-    <div class="modal fade userInfo show " tabindex="-1" v-if="isExist"  aria-labelledby="myLargeModalLabel" aria-modal="true" role="dialog">
+ 
+    <div class="modal fade userInfo show " tabindex="-1" v-if="isExist" style="height:90vh; "  aria-labelledby="myLargeModalLabel" aria-modal="true" role="dialog">
           <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
                   <div class="modal-header">
@@ -120,9 +121,9 @@
                         <div class="user-profile layout-spacing">
                             <div class="widget-content widget-content-area">
                                 
-                                <div class="text-center user-info">
+                                <div class="text-center user-info"  >
                                     <img :src="scannedInfo.profile_photo_path"
-                                    style="width:100%; "
+                                    style="width:100%;height:20rem; margin-top:-2rem;  "
                                      alt="avatar">
                                     <p class="">  {{ scannedInfo.name }}</p>
                                 </div>
@@ -164,7 +165,7 @@
                             <div class="widget-content widget-content-area">
                                 <h3 class="">Book Info</h3>
                                 <p>Book Id</p>
-                               <input type="text" name="" autofocus id="" class="form-control">
+                               <input type="text" name="" onblur="this.focus()" v-model="form.book_id"   id="Book_id" class="form-control">
                                 <div class="bio-skill-box">
 
                                     
@@ -174,17 +175,17 @@
                             </div>                                
                         </div>
 
-                         
+                            <div class="modal-footer">
+                      <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+                      <button type="button" @click="SubmitBorrow()" class="btn btn-primary">Save</button>
+                  </div>
                     </div>
 
                 </div>
                 </div>
                      
                   </div>
-                  <div class="modal-footer">
-                      <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
-                      <button type="button" class="btn btn-primary">Save</button>
-                  </div>
+                 
               </div>
           </div>
       </div>
@@ -205,8 +206,10 @@ export default {
   data(){
     return {
      isExist: false,
+     isFocus: false,
+    
       form: {
-
+        book_id:"",
         qr: "",
        
       },
@@ -215,20 +218,66 @@ export default {
 props:{
   books: Object,
   scannedInfo: Object,
+   id_Book_id_Exit: Object,
 },
   mounted() {
- 
+  document.getElementById('qr').focus();
     document.addEventListener("scroll", this.test);
   },
   methods:{
+    inputFocuss() {
+  document.querySelector('#qr').focus();
+},
+    SubmitBorrow(){
+      //  this.isExist = false
+      // $('.userInfo').modal('hide');
+       Inertia.post(route('SubmitBorrow'), this.form,{
+   onSuccess: (page) => {
+     console.log(this.id_Book_id_Exit)
+     console.log(this.scannedInfo)
+     if(!this.id_Book_id_Exit){
+ $('.userInfo').modal("hide");
+          document.querySelector(".modal-backdrop").style.display = "none";
+          const toast = swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            padding: "2em",
+          });
+          toast({
+            type: "success",
+            title: "Info Successfully Inserted",
+            padding: "2em",
+          });
+     }
+         else {
+              const toast = swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            padding: "2em",
+          });
+          toast({
+            type: "error",
+            title: "Book ID is Not Found",
+            padding: "2em",
+          });
+         }
+          
+        },
+       })
+      
+    },
+ 
     qrScanned(){
 
       setTimeout(() => { 
 
-        Inertia.post(route('qr_Scanned', 'ddd'), this.form,{
+        Inertia.post(route('qr_Scanned'), this.form,{
   onStart(){
-   
- 
+    
   },
    onSuccess: (page) => {
 
@@ -238,8 +287,10 @@ if(!this.scannedInfo){
 }
 else {
   this.isExist = true
-  console.log(this.scannedInfo)
+  document.getElementById('qr').focus();
   $('.userInfo').modal('show');
+
+  
 }
   },
   onFinish(page){
@@ -257,4 +308,5 @@ else {
     }
   }
 };
+ 
 </script>

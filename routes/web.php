@@ -20,6 +20,11 @@ use App\Http\Controllers\auth\AuthConroller;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('logout1', function(){
+    Auth::logout();
+    return redirect('/');
+})->name('logout1');
+
 Route::get('my', function()
 {
     $str=rand(); 
@@ -30,7 +35,7 @@ Route::get('my', function()
 });
 Route::middleware('auth')->group(function () {
     
- Route::post('Id-Scanned', [Qrcontroller::class, 'borrow'])->name('qr_Scanned');
+
 
 
 
@@ -59,7 +64,8 @@ Route::get('Add-Staff',  [UserController::class, 'index'])->name('librarist')->m
 Route::get('Availabel-Books', [BooksController::class, 'availablebook'])->name('book-borrow');
 
 Route::get('Borrow', [BooksController::class, 'borrow'])->name('borrow');
-
+Route::post('Borrow', [Qrcontroller::class, 'borrow'])->name('qr_Scanned');
+Route::post('submit_Borrow', [Qrcontroller::class, 'borrowSubmit'])->name('SubmitBorrow');
 
 Route::get('Profile-Info', [UserController::class, 'userProfile'])->name('profile.info');
 Route::post('Profile-update', [UserController::class, 'profileUpdate'])->name('profile.update');

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>KIO-LIBRARY-AUTOMATED-LIBRARY-MANAGMENT-SYSTEM</title>
     <!--Bootstrap css -->
     <!-- <script src="{{ mix('css/app.css') }}" defer></script> -->
     <link href="{{ asset('assets/assets/css/components/cards/card.css') }}" rel="stylesheet" type="text/css" />
