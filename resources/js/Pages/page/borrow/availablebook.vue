@@ -25,7 +25,7 @@
 
                     <h5 class="card-title">{{ book.title }}</h5>
                     <button type="button" class="btn btn-dark mt-3 mb-3 ml-2">
-                                      Available:- <span class="badge badge-light ml-2"> {{ book.amount }} </span>
+                                      Available:- <span class="badge badge-light ml-2"> {{ book.available }} </span>
                                     </button>
                     <p class="card-text"> {{ book.description }}</p>
                 </div>

@@ -65,14 +65,18 @@ Route::get('Availabel-Books', [BooksController::class, 'availablebook'])->name('
 
 Route::get('Borrow', [BooksController::class, 'borrow'])->name('borrow');
 Route::post('Borrow', [Qrcontroller::class, 'borrow'])->name('qr_Scanned');
+Route::post('return-book-preview', [Qrcontroller::class, 'returnPreview'])->name('return.book');
+
+Route::get('Return-submited/{id}', [Qrcontroller::class, 'ReturnSubmited'])->name('ReturnSubmited');
 Route::post('submit_Borrow', [Qrcontroller::class, 'borrowSubmit'])->name('SubmitBorrow');
+Route::get('Return-book-in', [Qrcontroller::class, 'ReturnBookIn'])->name('ReturnBookIn');
 
 Route::get('Profile-Info', [UserController::class, 'userProfile'])->name('profile.info');
 Route::post('Profile-update', [UserController::class, 'profileUpdate'])->name('profile.update');
 Route::post('Profile-Image', [UserController::class, 'ProfileImage'])->name('profileImage');
 
     
- 
+Route::get('/Developer-Team', [StudentController::class, 'Developer'])->name('developer1');
 Route::middleware('isStudent')->group(function () {
 Route::get('Student-Dashboard', [StudentController::class, 'index'])->name('student.dashboard');
     

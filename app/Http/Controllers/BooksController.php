@@ -40,6 +40,7 @@ class BooksController extends Controller
         $book->tumb = $imageName;
         $book->description = $request->desc;
         $book->amount = $request->amount;
+        $book->available =$request->amount;
         $book->status = "pending";
         $user = Book::all()->last();
         $temp_id = "000";
@@ -120,7 +121,7 @@ return back();
 public function availablebook()
 {
     
-    $books = Book::where('status', 'Approved',)->where('amount', '!=', 0)->get();
+    $books = Book::where('status', 'Approved',)->where('available', '!=', 0)->get();
 
     return Inertia::render('page/borrow/availablebook', ['books'=>$books]);
 }

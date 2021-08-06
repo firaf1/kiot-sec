@@ -232,6 +232,7 @@ class UserController extends Controller
         $user->user_id = $request->id_num;
         $user->department = $request->dept_id;
         $user->dept_id = $request->dept_id;
+        $user->profile_photo_path = 'ProfileImage/icon3.jpg';
         $user->save();
      return redirect(route('login'));
 
@@ -273,6 +274,80 @@ public function studentupdate(Request $request, $id)
     public function studentApproved(Request $request, $id)
     {
        $user = User::where('id', $id)->first();
+
+
+
+       $card = ImageManagerStatic::make('assets/card/card.jpg')->resize(2000, 3000);
+       $pic = ImageManagerStatic::make($user->profile_photo_path)->resize(880, 880);
+       $card->insert($pic, '', 570, 490);
+       $hashedName = Hash::make($request->name);
+
+    
+       
+
+
+       $dns = new DNS2D;
+       $str=rand(); 
+
+  $result = md5($str); 
+  
+  $qr_data = "KIOT-".substr($result, 0, 10);
+      $user->qr_data = $qr_data;
+       $barcode = Image::make($dns->getBarcodePNG($qr_data, 'QRCODE'))->resize(700, 700);
+       $card->insert($barcode, '', 800, 2300);
+
+
+
+       $card->text($user->name, 500, 1500, function ($font) {
+          $font->file(public_path('css/id.ttf'));
+          $font->size(150);
+          $font->color('#00235d');
+          // $font->align('center');
+          $font->valign('top');
+          $font->angle(0);
+      });
+      $card->text('Id: '.$user->user_id, 700, 1700, function ($font) {
+          $font->file(public_path('css/id.ttf'));
+          $font->size(80);
+          $font->color('#757592');
+          // $font->align('center');
+          $font->valign('top');
+          $font->angle(0);
+      });
+
+      $card->text( 'Role: '.'Student', 700, 2000, function ($font) {
+          $font->file(public_path('css/id.ttf'));
+          $font->size(90);
+          $font->color('#757592');
+          // $font->align('center');
+          $font->valign('top');
+          $font->angle(0);
+      });
+      $card->text( 'Phone: '.$user->PhoneNumber, 600, 2150, function ($font) {
+          $font->file(public_path('css/id.ttf'));
+          $font->size(90);
+          $font->color('#757592');
+          // $font->align('center');
+          $font->valign('top');
+          $font->angle(0);
+      });
+
+   
+       $card->save('cards/'. $request->fullname.time().$card . '.png');
+
+      //  dd($card->basename);
+      $user->qr = 'cards/'.$card->basename;
+
+
+
+
+
+
+
+
+
+
+
        $user->status = "Approved";
        $user->save();
        return redirect(route('student'));

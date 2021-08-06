@@ -11,4 +11,8 @@ class StudentController extends Controller
    {
     return Inertia::render('page/student/dashboard');
    }
+   public function Developer()
+   {
+      return Inertia::render('developer');
+   }
 }

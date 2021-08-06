@@ -164,7 +164,7 @@
             </div>
           </inertia-link >
         </li>
-  <li class="menu">
+  <li class="menu" v-if="$page.props.user.role != 'student'">
           <inertia-link :href="route('borrow')" aria-expanded="false" class="dropdown-toggle">
             <div class="">
              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
@@ -173,44 +173,18 @@
           </inertia-link >
         </li>
         
-  <li class="menu">
-          <inertia-link :href="route('borrow')" aria-expanded="false" class="dropdown-toggle">
+  <li class="menu" v-if="$page.props.user.role != 'student'">
+          <inertia-link :href="route('ReturnBookIn')" aria-expanded="false" class="dropdown-toggle">
             <div class="">
              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
               <span>Return</span>
             </div>
           </inertia-link >
         </li>
+ 
 
-        <li class="menu">
-          <a href="apps_scrumboard.html" aria-expanded="false" class="dropdown-toggle">
-            <div class="">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-file-plus"
-              >
-                <path
-                  d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
-                ></path>
-                <polyline points="14 2 14 8 20 8"></polyline>
-                <line x1="12" y1="18" x2="12" y2="12"></line>
-                <line x1="9" y1="15" x2="15" y2="15"></line>
-              </svg>
-              <span>Scrumboard</span>
-            </div>
-          </a>
-        </li>
-
-        <li class="menu">
-          <a href="apps_contacts.html" aria-expanded="false" class="dropdown-toggle">
+        <li class="menu" >
+          <inertia-link :href="route('developer1')"   class="dropdown-toggle">
             <div class="">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -227,97 +201,11 @@
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                 <circle cx="12" cy="10" r="3"></circle>
               </svg>
-              <span>Contacts</span>
+              <span>Developer</span>
             </div>
-          </a>
+          </inertia-link>
         </li>
-
-        <li class="menu">
-          <a
-            href="#invoice"
-            data-toggle="collapse"
-            aria-expanded="false"
-            class="dropdown-toggle"
-          >
-            <div class="">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-dollar-sign"
-              >
-                <line x1="12" y1="1" x2="12" y2="23"></line>
-                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-              </svg>
-              <span>Invoice</span>
-            </div>
-            <div>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-chevron-right"
-              >
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </div>
-          </a>
-          <ul
-            class="collapse submenu list-unstyled"
-            id="invoice"
-            data-parent="#accordionExample"
-          >
-            <li>
-              <a href="apps_invoice-list.html"> List </a>
-            </li>
-            <li>
-              <a href="apps_invoice-preview.html"> Preview </a>
-            </li>
-            <li>
-              <a href="apps_invoice-add.html"> Add </a>
-            </li>
-            <li>
-              <a href="apps_invoice-edit.html"> Edit </a>
-            </li>
-          </ul>
-        </li>
-
-        <li class="menu">
-          <a href="apps_calendar.html" aria-expanded="false" class="dropdown-toggle">
-            <div class="">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-calendar"
-              >
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-              </svg>
-              <span>Calendar</span>
-            </div>
-          </a>
-        </li>
+ 
 
         <li class="menu menu-heading">
           <div class="heading">

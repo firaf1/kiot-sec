@@ -14,7 +14,7 @@ class AddAvailableBook extends Migration
     public function up()
     {
         Schema::table('books', function (Blueprint $table) {
-            //
+            $table->string('available');
         });
     }
 

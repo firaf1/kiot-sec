@@ -2,9 +2,12 @@
   <app-layout>
     <div id="content" class="main-content">
       <div class="layout-px-spacing">
-        <div class="row layout-top-spacing">
-          <h2>This is Student Dashboard :)</h2>
-        </div>
+        <h1 class="text-center">Welcome to Kiot Library</h1>
+
+         <img
+         style="margin-left:40%; "
+          src="assets/woll.png" alt="">
+                
       </div>
     </div>
   </app-layout>

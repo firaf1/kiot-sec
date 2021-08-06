@@ -1,10 +1,13 @@
 <template>
   <app-layout>
-    <div id="content" class="main-content">
+    <div id="content" class="main-content " style="background:#e9e9e9; ">
       <div class="layout-px-spacing">
-        <div class="row layout-top-spacing">
-          <h2>This is dashboard :)</h2>
-        </div>
+        <h1 class="text-center">Welcome to Kiot Library</h1>
+
+         <img
+         style="margin-left:40%; "
+          src="assets/woll.png" alt="">
+                
       </div>
     </div>
   </app-layout>
