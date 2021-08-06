@@ -133,6 +133,8 @@ class UserController extends Controller
             $font->angle(0);
         });
 
+        
+
      
          $card->save('cards/'. $request->fullname.time().$card . '.png');
  

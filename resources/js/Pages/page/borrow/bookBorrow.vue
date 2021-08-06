@@ -222,7 +222,7 @@ props:{
 },
   mounted() {
   document.getElementById('qr').focus();
-    document.addEventListener("scroll", this.test);
+     
   },
   methods:{
     inputFocuss() {

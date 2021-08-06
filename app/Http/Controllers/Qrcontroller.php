@@ -101,4 +101,26 @@ else {
 
     }
 
+    public function Frontwelcom(Request $request)
+    {
+        $user = User::where('qr_data', $request->qr)->first();
+        if($user){
+        $ex = Borrow::where('user_id', $user->id)->count();
+        $le = "";
+        
+        if($ex > 0){
+            $le = true;
+        }
+        if($ex == 0){
+            $le = false;
+            
+        }
+        return Inertia::render('page/qrToWelcom', ['scannedInfo'=>$user,'isUser'=>true, 'isBook'=> $le]);
+    }
+        else{
+            
+            return Inertia::render('page/qrToWelcom', ['scannedInfo'=>$user,'isUser'=>false, 'isBook'=>false]);
+        }
+    }
+
 }

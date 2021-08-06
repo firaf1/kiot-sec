@@ -164,7 +164,7 @@
             </div>
           </inertia-link >
         </li>
-  <li class="menu" v-if="$page.props.user.role != 'student'">
+  <li class="menu" v-if="$page.props.user.role == 'staff'">
           <inertia-link :href="route('borrow')" aria-expanded="false" class="dropdown-toggle">
             <div class="">
              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
@@ -173,7 +173,7 @@
           </inertia-link >
         </li>
         
-  <li class="menu" v-if="$page.props.user.role != 'student'">
+  <li class="menu" v-if="$page.props.user.role == 'staff'">
           <inertia-link :href="route('ReturnBookIn')" aria-expanded="false" class="dropdown-toggle">
             <div class="">
              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
@@ -182,6 +182,14 @@
           </inertia-link >
         </li>
  
+  <li class="menu" v-if="$page.props.user.role != 'student'">
+          <inertia-link :href="route('frontWelcome1')" aria-expanded="false" class="dropdown-toggle">
+            <div class="">
+             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              <span>Front-Welcome</span>
+            </div>
+          </inertia-link >
+        </li>
 
         <li class="menu" >
           <inertia-link :href="route('developer1')"   class="dropdown-toggle">

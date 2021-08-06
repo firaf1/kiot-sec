@@ -37,7 +37,11 @@ Route::middleware('auth')->group(function () {
     
 
 
-
+    Route::get('/KIOT-WELCOME', function(){
+        
+        return Inertia::render('page/qrToWelcom');
+    })->name('frontWelcome1');
+    Route::post('KIOT-WELCOME', [Qrcontroller::class, 'Frontwelcom'])->name('front-qrs');
 
     Route::post('/store-user', [UserController::class, 'store'])
     ->name('user.store')
@@ -81,8 +85,7 @@ Route::middleware('isStudent')->group(function () {
 Route::get('Student-Dashboard', [StudentController::class, 'index'])->name('student.dashboard');
     
   
-
-
+// ///////////////////////Front Qr welcome/////////////////////////////////
 
 
 });
