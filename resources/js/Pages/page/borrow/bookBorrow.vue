@@ -23,7 +23,7 @@
                       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
             <div class="widget widget-table-three">
               <div class="widget-heading">
-                <h5 class="">Top Selling Product</h5>
+                <h5 class=""> Borrow Page</h5>
               </div>
 
               <div class="widget-content">

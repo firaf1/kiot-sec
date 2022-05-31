@@ -103,7 +103,10 @@ else {
 
     public function Frontwelcom(Request $request)
     {
-        $user = User::where('qr_data', $request->qr)->first();
+
+
+        $user = User::where('qr_data', $request->qr)->where('status', 'Approved')->first();
+       
         if($user){
         $ex = Borrow::where('user_id', $user->id)->count();
         $le = "";

@@ -33,7 +33,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
      
-     
+    
 
         $request->validate([
             // 'picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
@@ -60,8 +60,8 @@ class UserController extends Controller
         $user->status = 'Approved';
         $user->dept_id = 'staff';
         $user->shift_id = $request->shift_id;
-        $picture1 = 'kebeleid'.time() . '.' . $request->scannedKebeleId->extension();
-        $insert1 =  $request->scannedKebeleId->move(public_path('kebeleId'), $picture1);
+            $picture1 = 'kebeleid'.time() . '.' . $request->scannedKebeleId->extension();
+            $insert1 =  $request->scannedKebeleId->move(public_path('kebeleId'), $picture1);
         if($insert1){
             $user->scanned_kebele_id = 'kebeleId/'.$picture1;
 }

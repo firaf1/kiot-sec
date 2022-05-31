@@ -124,6 +124,40 @@
 
 
 
+
+
+
+ <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+    <div class="widget widget-card-one">
+        <div class="widget-content">
+
+            <div class="media">
+                <div class=" ">
+                    <img style="width:7rem; height:7rem; "  src="dev/kefi.jpg" alt="avatar">
+                </div>
+                <div class="media-body">
+                    <h6>Kefale Aragaw</h6>
+                 
+                    <p class="meta-date-time">
+                    <span class="badge badge-primary"> ID- 0694/11</span>
+                    </p> 
+                </div>
+            </div>
+
+            <p>my name is Kefale Aragaw  and i am web developer</p>
+
+            <div class="w-action">
+                
+
+                <div class="read-more">
+                    <a href="javascript:void(0);">Read More <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-right"><polyline points="13 17 18 12 13 7"></polyline><polyline points="6 17 11 12 6 7"></polyline></svg></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
   <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
     <div class="widget widget-card-one">
         <div class="widget-content">

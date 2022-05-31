@@ -290,6 +290,7 @@ else {
 }
 
 if(!this.isUser){
+  this.form.qr = null
      const toast = swal.mixin({
             toast: true,
             position: "top-end",
@@ -303,6 +304,7 @@ if(!this.isUser){
             padding: "2em",
           });
 }
+ 
   },
   onFinish(page){
      
@@ -313,7 +315,7 @@ if(!this.isUser){
 
         })
          
-         }, 800);
+         }, 500);
 
       
     }

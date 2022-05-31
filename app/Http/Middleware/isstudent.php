@@ -17,6 +17,10 @@ class isstudent
      */
     public function handle(Request $request, Closure $next)
     {
+        if(Auth::user()->role == 'staff'){
+            
+            return $next($request);
+        }
         if(Auth::user()->role == 'student'){
             
             return $next($request);
